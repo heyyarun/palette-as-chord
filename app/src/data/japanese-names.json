@@ -1,0 +1,1592 @@
+[
+ {
+  "index": 0,
+  "en": "Hermosa Pink",
+  "kanji": "鴾色",
+  "kana": "ときいろ",
+  "kanjiAsPrinted": "鴾色(鴇色)",
+  "confidence": "high",
+  "source": "vol3-p27",
+  "note": "Printed as 鴾色 with alternative spelling 鴇色 in parentheses (both read ときいろ); same on vol4-p24"
+ },
+ {
+  "index": 1,
+  "en": "Corinthian Pink",
+  "kanji": "肉色",
+  "kana": "にくいろ",
+  "kanjiAsPrinted": "肉色",
+  "confidence": "high",
+  "source": "vol1-p13",
+  "note": ""
+ },
+ {
+  "index": 2,
+  "en": "Cameo Pink",
+  "kanji": "一斤染",
+  "kana": "いっこんぞめ",
+  "kanjiAsPrinted": "一斤染",
+  "confidence": "high",
+  "source": "vol2-p16",
+  "note": "Printed reading いつこんぞめ"
+ },
+ {
+  "index": 3,
+  "en": "Fawn",
+  "kanji": "桜鼠",
+  "kana": "さくらねずみ",
+  "kanjiAsPrinted": "櫻鼠",
+  "confidence": "high",
+  "source": "vol1-p08",
+  "note": ""
+ },
+ {
+  "index": 4,
+  "en": "Light Brown Drab",
+  "kanji": "梅鼠",
+  "kana": "うめねず",
+  "kanjiAsPrinted": "梅鼠",
+  "confidence": "high",
+  "source": "vol1-p17",
+  "note": ""
+ },
+ {
+  "index": 5,
+  "en": "Coral Red",
+  "kanji": "珊瑚珠色",
+  "kana": "さんごしゅいろ",
+  "kanjiAsPrinted": "珊瑚珠色",
+  "confidence": "high",
+  "source": "vol2-p12",
+  "note": "Printed reading さんごしゆいろ"
+ },
+ {
+  "index": 6,
+  "en": "Fresh Color",
+  "kanji": "柿色",
+  "kana": "かきいろ",
+  "kanjiAsPrinted": "柿色(装束の)",
+  "confidence": "high",
+  "source": "vol4-p30",
+  "note": "Printed with parenthetical (装束の), distinguishing it from plain 柿色 (Brick Red)"
+ },
+ {
+  "index": 7,
+  "en": "Grenadine Pink",
+  "kanji": "洗朱",
+  "kana": "あらいしゅ",
+  "kanjiAsPrinted": "洗朱",
+  "confidence": "high",
+  "source": "vol1-p02",
+  "note": "Printed reading あらひしゆ (old kana)"
+ },
+ {
+  "index": 8,
+  "en": "Eosine Pink",
+  "kanji": "浅紅",
+  "kana": "うすくれない",
+  "kanjiAsPrinted": "淺紅",
+  "confidence": "high",
+  "source": "vol1-p15",
+  "note": "Printed reading うすくれなゐ (old kana)"
+ },
+ {
+  "index": 9,
+  "en": "Spinel Red",
+  "kanji": "紅梅色",
+  "kana": "こうばいいろ",
+  "kanjiAsPrinted": "紅梅色",
+  "confidence": "high",
+  "source": "vol1-p05",
+  "note": ""
+ },
+ {
+  "index": 10,
+  "en": "Old Rose",
+  "kanji": "長春色",
+  "kana": "ちょうしゅんいろ",
+  "kanjiAsPrinted": "長春色",
+  "confidence": "high",
+  "source": "vol1-p27",
+  "note": "Printed reading ちやうしゆんいろ"
+ },
+ {
+  "index": 11,
+  "en": "Eugenia Red | A",
+  "kanji": "緋褪色",
+  "kana": "ひさめいろ",
+  "kanjiAsPrinted": "緋褪色",
+  "confidence": "medium",
+  "source": "vol5-p22",
+  "note": "Kanji/kana clearly legible. A/B assignment inferred from swatch hue: this swatch scans more orange (~#d24f3e) than the 浅緋 Eugenia Red swatches (~#b13f49), matching A (#e2625e) over B (#da525d)"
+ },
+ {
+  "index": 12,
+  "en": "Eugenia Red | B",
+  "kanji": "浅緋",
+  "kana": "うすひ",
+  "kanjiAsPrinted": "淺緋",
+  "confidence": "medium",
+  "source": "vol1-p07",
+  "note": "Kanji/kana clearly legible and printed for \"Eugenia Red\" on many pages (vol1-p07/p08, vol2-p05, vol5-p06/p20...). A/B assignment inferred from swatch hue (more crimson than the 緋褪色 swatch), matching B"
+ },
+ {
+  "index": 13,
+  "en": "Raw Sienna",
+  "kanji": "檜皮色",
+  "kana": "ひはだいろ",
+  "kanjiAsPrinted": "檜皮色",
+  "confidence": "high",
+  "source": "vol1-p02",
+  "note": "Scan spelling \"Law Sienna\""
+ },
+ {
+  "index": 14,
+  "en": "Vinaceous Tawny",
+  "kanji": "柿渋色",
+  "kana": "かきしぶいろ",
+  "kanjiAsPrinted": "柿澁色",
+  "confidence": "high",
+  "source": "vol1-p19",
+  "note": ""
+ },
+ {
+  "index": 15,
+  "en": "Jasper Red",
+  "kanji": "紅柿色",
+  "kana": "べにかきいろ",
+  "kanjiAsPrinted": "紅柿色",
+  "confidence": "high",
+  "source": "vol3-p17",
+  "note": ""
+ },
+ {
+  "index": 16,
+  "en": "Spectrum Red",
+  "kanji": "赤色",
+  "kana": "あかいろ",
+  "kanjiAsPrinted": "赤色",
+  "confidence": "high",
+  "source": "vol5-p08",
+  "note": ""
+ },
+ {
+  "index": 17,
+  "en": "Red Orange",
+  "kanji": "朱色",
+  "kana": "しゅいろ",
+  "kanjiAsPrinted": "朱色",
+  "confidence": "high",
+  "source": "vol1-p15",
+  "note": ""
+ },
+ {
+  "index": 18,
+  "en": "Etruscan Red",
+  "kanji": "雀茶",
+  "kana": "すずめちゃ",
+  "kanjiAsPrinted": "雀茶",
+  "confidence": "high",
+  "source": "vol1-p11",
+  "note": "Printed reading すゞめちや"
+ },
+ {
+  "index": 19,
+  "en": "Burnt Sienna",
+  "kanji": "栗梅",
+  "kana": "くりうめ",
+  "kanjiAsPrinted": "栗梅",
+  "confidence": "high",
+  "source": "vol4-p10",
+  "note": "Also vol6-p10"
+ },
+ {
+  "index": 20,
+  "en": "Ochre Red",
+  "kanji": "小豆茶",
+  "kana": "あずきちゃ",
+  "kanjiAsPrinted": "小豆茶",
+  "confidence": "high",
+  "source": "vol4-p12",
+  "note": "Scan spelling \"Ocher Red\"; printed reading あづきちや (old kana)"
+ },
+ {
+  "index": 21,
+  "en": "Scarlet",
+  "kanji": "紅",
+  "kana": "くれない",
+  "kanjiAsPrinted": "紅(装束の)",
+  "confidence": "high",
+  "source": "vol3-p07",
+  "note": "Printed with parenthetical (装束の); vol6-p10 reading printed くれなゐ (old kana)"
+ },
+ {
+  "index": 22,
+  "en": "Carmine",
+  "kanji": "臙脂色",
+  "kana": "えんじいろ",
+  "kanjiAsPrinted": "臙脂色",
+  "confidence": "high",
+  "source": "vol1-p19",
+  "note": ""
+ },
+ {
+  "index": 23,
+  "en": "Indian Lake",
+  "kanji": "浅蘇芳",
+  "kana": "うすすおう",
+  "kanjiAsPrinted": "淺蘇芳",
+  "confidence": "high",
+  "source": "vol6-p02",
+  "note": "Printed reading うすすはう (old kana)"
+ },
+ {
+  "index": 24,
+  "en": "Rosolanc Purple",
+  "kanji": "牡丹色",
+  "kana": "ぼたんいろ",
+  "kanjiAsPrinted": "牡丹色",
+  "confidence": "high",
+  "source": "vol1-p23",
+  "note": ""
+ },
+ {
+  "index": 25,
+  "en": "Pomegranite Purple",
+  "kanji": "苺色",
+  "kana": "いちごいろ",
+  "kanjiAsPrinted": "苺色",
+  "confidence": "high",
+  "source": "vol4-p20",
+  "note": "Scan spelling \"Pomegranate Purple\""
+ },
+ {
+  "index": 26,
+  "en": "Hydrangea Red",
+  "kanji": "小豆色",
+  "kana": "あずきいろ",
+  "kanjiAsPrinted": "小豆色",
+  "confidence": "high",
+  "source": "vol3-p09",
+  "note": "Printed reading あづきいろ (old kana)"
+ },
+ {
+  "index": 27,
+  "en": "Brick Red",
+  "kanji": "柿色",
+  "kana": "かきいろ",
+  "kanjiAsPrinted": "柿色",
+  "confidence": "high",
+  "source": "vol1-p17",
+  "note": ""
+ },
+ {
+  "index": 28,
+  "en": "Carmine Red",
+  "kanji": "紅色",
+  "kana": "べにいろ",
+  "kanjiAsPrinted": "紅色",
+  "confidence": "high",
+  "source": "vol1-p17",
+  "note": ""
+ },
+ {
+  "index": 29,
+  "en": "Pompeian Red",
+  "kanji": "紅樺色",
+  "kana": "べにかばいろ",
+  "kanjiAsPrinted": "紅樺色",
+  "confidence": "high",
+  "source": "vol1-p13",
+  "note": ""
+ },
+ {
+  "index": 30,
+  "en": "Red",
+  "kanji": "茜色",
+  "kana": "あかねいろ",
+  "kanjiAsPrinted": "茜色",
+  "confidence": "high",
+  "source": "vol5-p06",
+  "note": ""
+ },
+ {
+  "index": 31,
+  "en": "Brown",
+  "kanji": "鳶茶色",
+  "kana": "とびちゃいろ",
+  "kanjiAsPrinted": "鳶茶色",
+  "confidence": "high",
+  "source": "vol2-p20",
+  "note": ""
+ },
+ {
+  "index": 32,
+  "en": "Hay's Russet",
+  "kanji": "鳶色",
+  "kana": "とびいろ",
+  "kanjiAsPrinted": "鳶色",
+  "confidence": "high",
+  "source": "vol1-p27",
+  "note": ""
+ },
+ {
+  "index": 33,
+  "en": "Vandyke Red",
+  "kanji": "紅海老茶",
+  "kana": "べにえびちゃ",
+  "kanjiAsPrinted": "紅海老茶",
+  "confidence": "high",
+  "source": "vol1-p07",
+  "note": ""
+ },
+ {
+  "index": 34,
+  "en": "Pansy Purple",
+  "kanji": "蘇芳色",
+  "kana": "すおういろ",
+  "kanjiAsPrinted": "蘇芳色",
+  "confidence": "high",
+  "source": "vol3-p17",
+  "note": "Printed reading すはういろ (old kana)"
+ },
+ {
+  "index": 35,
+  "en": "Pale Burnt Lake",
+  "kanji": "海老茶色",
+  "kana": "えびちゃいろ",
+  "kanjiAsPrinted": "海老茶色",
+  "confidence": "high",
+  "source": "vol3-p02",
+  "note": ""
+ },
+ {
+  "index": 36,
+  "en": "Violet Red",
+  "kanji": "京紫",
+  "kana": "きょうむらさき",
+  "kanjiAsPrinted": "京紫",
+  "confidence": "high",
+  "source": "vol1-p03",
+  "note": "Printed reading きやうむらさき (old kana)"
+ },
+ {
+  "index": 37,
+  "en": "Vistoris Lake",
+  "kanji": "栗皮色",
+  "kana": "くりかわいろ",
+  "kanjiAsPrinted": "栗皮色",
+  "confidence": "high",
+  "source": "vol2-p02",
+  "note": "Scan spelling \"Vistoris Lake\""
+ },
+ {
+  "index": 38,
+  "en": "Sulpher Yellow",
+  "kanji": "蒸栗色",
+  "kana": "むしくりいろ",
+  "kanjiAsPrinted": "蒸栗色",
+  "confidence": "high",
+  "source": "vol1-p25",
+  "note": "Scan spelling \"Sulphur Yellow\""
+ },
+ {
+  "index": 39,
+  "en": "Pale Lemon Yellow",
+  "kanji": "淡卵色",
+  "kana": "うすたまごいろ",
+  "kanjiAsPrinted": "淡卵色",
+  "confidence": "high",
+  "source": "vol1-p02",
+  "note": ""
+ },
+ {
+  "index": 40,
+  "en": "Naples Yellow",
+  "kanji": "淡黄蘗",
+  "kana": "うすきはだ",
+  "kanjiAsPrinted": "淡黄蘗",
+  "confidence": "high",
+  "source": "vol1-p05",
+  "note": "Third kanji read as 蘗 (黄蘗 = きはだ)"
+ },
+ {
+  "index": 41,
+  "en": "Ivory Buff",
+  "kanji": "白茶",
+  "kana": "しらちゃ",
+  "kanjiAsPrinted": "白茶",
+  "confidence": "high",
+  "source": "vol1-p05",
+  "note": ""
+ },
+ {
+  "index": 42,
+  "en": "Seashell Pink",
+  "kanji": "肌色",
+  "kana": "はだいろ",
+  "kanjiAsPrinted": "肌色",
+  "confidence": "high",
+  "source": "vol1-p21",
+  "note": ""
+ },
+ {
+  "index": 43,
+  "en": "Light Pinkish Cinnamon",
+  "kanji": "淡香色",
+  "kana": "うすこういろ",
+  "kanjiAsPrinted": "淡香色",
+  "confidence": "high",
+  "source": "vol6-p06",
+  "note": "Printed reading うすかういろ (old kana)"
+ },
+ {
+  "index": 44,
+  "en": "Pinkish Cinnamon",
+  "kanji": "砥粉色",
+  "kana": "とのこいろ",
+  "kanjiAsPrinted": "砥粉色",
+  "confidence": "high",
+  "source": "vol2-p05",
+  "note": ""
+ },
+ {
+  "index": 45,
+  "en": "Cinnamon Buff",
+  "kanji": "玉蜀黍色",
+  "kana": "とうもろこしいろ",
+  "kanjiAsPrinted": "玉蜀黍色",
+  "confidence": "high",
+  "source": "vol1-p11",
+  "note": "Printed reading たうもろこしいろ (old kana)"
+ },
+ {
+  "index": 46,
+  "en": "Cream Yellow",
+  "kanji": "卵色",
+  "kana": "たまごいろ",
+  "kanjiAsPrinted": "卵色",
+  "confidence": "high",
+  "source": "vol3-p01",
+  "note": ""
+ },
+ {
+  "index": 47,
+  "en": "Golden Yellow",
+  "kanji": "金茶",
+  "kana": "きんちゃ",
+  "kanjiAsPrinted": "金茶",
+  "confidence": "high",
+  "source": "vol1-p11",
+  "note": ""
+ },
+ {
+  "index": 48,
+  "en": "Vinaceous Cinnamon",
+  "kanji": "香色",
+  "kana": "こういろ",
+  "kanjiAsPrinted": "香色",
+  "confidence": "high",
+  "source": "vol4-p14",
+  "note": "Printed reading かういろ (old kana)"
+ },
+ {
+  "index": 49,
+  "en": "Ochraceous Salmon",
+  "kanji": "款冬色",
+  "kana": "ふきいろ",
+  "kanjiAsPrinted": "欵冬色",
+  "confidence": "high",
+  "source": "vol3-p01",
+  "note": "vol3-p01 prints 欵冬色 (欵 = variant of 款); vol1-p15/p16 print 疑冬色 with the same reading"
+ },
+ {
+  "index": 50,
+  "en": "Isabella Color",
+  "kanji": "落葉色",
+  "kana": "おちばいろ",
+  "kanjiAsPrinted": "落葉色",
+  "confidence": "high",
+  "source": "vol1-p02",
+  "note": ""
+ },
+ {
+  "index": 51,
+  "en": "Maple",
+  "kanji": "幹色",
+  "kana": "みきいろ",
+  "kanjiAsPrinted": "幹色",
+  "confidence": "high",
+  "source": "vol5-p20",
+  "note": ""
+ },
+ {
+  "index": 52,
+  "en": "Olive Buff",
+  "kanji": "桑色白茶",
+  "kana": "くわいろしらちゃ",
+  "kanjiAsPrinted": "桑色白茶",
+  "confidence": "high",
+  "source": "vol2-p08",
+  "note": "Printed reading くはいろしらちや (old kana)"
+ },
+ {
+  "index": 53,
+  "en": "Ecru",
+  "kanji": "灰汁色",
+  "kana": "あくいろ",
+  "kanjiAsPrinted": "灰汁色",
+  "confidence": "high",
+  "source": "vol3-p23",
+  "note": ""
+ },
+ {
+  "index": 54,
+  "en": "Yellow",
+  "kanji": "黄色",
+  "kana": "きいろ",
+  "kanjiAsPrinted": "黄色(純色)",
+  "confidence": "high",
+  "source": "vol1-p09",
+  "note": "Printed with parenthetical (純色) \"pure colour\""
+ },
+ {
+  "index": 55,
+  "en": "Lemon Yellow",
+  "kanji": "金糸雀色",
+  "kana": "かなりやいろ",
+  "kanjiAsPrinted": "金絲雀色",
+  "confidence": "high",
+  "source": "vol1-p21",
+  "note": ""
+ },
+ {
+  "index": 56,
+  "en": "Apricot Yellow",
+  "kanji": "鬱金色",
+  "kana": "うこんいろ",
+  "kanjiAsPrinted": "鬱金色",
+  "confidence": "high",
+  "source": "vol2-p20",
+  "note": ""
+ },
+ {
+  "index": 57,
+  "en": "Pyrite Yellow",
+  "kanji": "淡青朽葉",
+  "kana": "うすあおくちば",
+  "kanjiAsPrinted": "淡青朽葉",
+  "confidence": "high",
+  "source": "vol4-p30",
+  "note": "Printed reading うすあをくちば (old kana)"
+ },
+ {
+  "index": 58,
+  "en": "Olive Ocher",
+  "kanji": "油色",
+  "kana": "あぶらいろ",
+  "kanjiAsPrinted": "油色",
+  "confidence": "high",
+  "source": "vol2-p02",
+  "note": ""
+ },
+ {
+  "index": 59,
+  "en": "Yellow Ocher",
+  "kanji": "山吹茶",
+  "kana": "やまぶきちゃ",
+  "kanjiAsPrinted": "山吹茶",
+  "confidence": "high",
+  "source": "vol1-p19",
+  "note": ""
+ },
+ {
+  "index": 60,
+  "en": "Orange Yellow",
+  "kanji": "山吹色",
+  "kana": "やまぶきいろ",
+  "kanjiAsPrinted": "山吹色",
+  "confidence": "high",
+  "source": "vol2-p21",
+  "note": "Consistently 山吹色 on vol2/vol3/vol5 pages; vol6-p08 prints \"Orange Yellow\" under 山吹茶 (likely a label mix-up; 山吹茶 is Yellow Ocher elsewhere)"
+ },
+ {
+  "index": 61,
+  "en": "Yellow Orange",
+  "kanji": "柑子色",
+  "kana": "こうじいろ",
+  "kanjiAsPrinted": "柑子色",
+  "confidence": "high",
+  "source": "vol1-p01",
+  "note": "Printed reading かうじいろ (old kana)"
+ },
+ {
+  "index": 62,
+  "en": "Apricot Orange",
+  "kanji": "深支子",
+  "kana": "こきくちなし",
+  "kanjiAsPrinted": "深支子",
+  "confidence": "high",
+  "source": "vol4-p17",
+  "note": ""
+ },
+ {
+  "index": 63,
+  "en": "Orange",
+  "kanji": "橙色",
+  "kana": "とうしょく",
+  "kanjiAsPrinted": "橙色",
+  "confidence": "high",
+  "source": "vol1-p03",
+  "note": "Printed reading たうしよく (old kana), not だいだいいろ"
+ },
+ {
+  "index": 64,
+  "en": "Peach Red",
+  "kanji": "杏色",
+  "kana": "あんずいろ",
+  "kanjiAsPrinted": "杏色",
+  "confidence": "high",
+  "source": "vol2-p23",
+  "note": ""
+ },
+ {
+  "index": 65,
+  "en": "English Red",
+  "kanji": "蒲色",
+  "kana": "かばいろ",
+  "kanjiAsPrinted": "蒲色",
+  "confidence": "high",
+  "source": "vol1-p01",
+  "note": ""
+ },
+ {
+  "index": 66,
+  "en": "Cinnamon Rufous",
+  "kanji": "代赭色",
+  "kana": "たいしゃいろ",
+  "kanjiAsPrinted": "代赭色",
+  "confidence": "high",
+  "source": "vol1-p03",
+  "note": ""
+ },
+ {
+  "index": 67,
+  "en": "Orange Rufous",
+  "kanji": "飴色",
+  "kana": "あめいろ",
+  "kanjiAsPrinted": "飴色",
+  "confidence": "high",
+  "source": "vol2-p12",
+  "note": ""
+ },
+ {
+  "index": 68,
+  "en": "Sulphine Yellow",
+  "kanji": "黄蘗色",
+  "kana": "きはだいろ",
+  "kanjiAsPrinted": "黄蘗色",
+  "confidence": "high",
+  "source": "vol1-p17",
+  "note": ""
+ },
+ {
+  "index": 69,
+  "en": "Khaki",
+  "kanji": "黄茶",
+  "kana": "きちゃ",
+  "kanjiAsPrinted": "黄茶",
+  "confidence": "high",
+  "source": "vol3-p03",
+  "note": ""
+ },
+ {
+  "index": 70,
+  "en": "Citron Yellow",
+  "kanji": "菜種油色",
+  "kana": "なたねいろ",
+  "kanjiAsPrinted": "菜種油色",
+  "confidence": "high",
+  "source": "vol1-p19",
+  "note": "Kanji 菜種油色 but printed reading is なたねいろ (no ゆ)"
+ },
+ {
+  "index": 71,
+  "en": "Citrine",
+  "kanji": "青朽葉",
+  "kana": "あおくちば",
+  "kanjiAsPrinted": "青朽葉",
+  "confidence": "high",
+  "source": "vol1-p29",
+  "note": "Printed reading あをくちば (old kana)"
+ },
+ {
+  "index": 72,
+  "en": "Buffy Citrine",
+  "kanji": "黄海松茶",
+  "kana": "きみるちゃ",
+  "kanjiAsPrinted": "黄海松茶",
+  "confidence": "high",
+  "source": "vol2-p16",
+  "note": ""
+ },
+ {
+  "index": 73,
+  "en": "Dark Citrine",
+  "kanji": "路考茶",
+  "kana": "ろこうちゃ",
+  "kanjiAsPrinted": "路考茶",
+  "confidence": "high",
+  "source": "vol1-p03",
+  "note": ""
+ },
+ {
+  "index": 74,
+  "en": "Light Grayish Olive",
+  "kanji": "利久茶",
+  "kana": "りきゅうちゃ",
+  "kanjiAsPrinted": "利久茶",
+  "confidence": "high",
+  "source": "vol2-p20",
+  "note": "Printed reading りきうちや (old kana)"
+ },
+ {
+  "index": 75,
+  "en": "Krongbergs Green",
+  "kanji": "鶯色",
+  "kana": "うぐいすいろ",
+  "kanjiAsPrinted": "鶯色",
+  "confidence": "high",
+  "source": "vol1-p13",
+  "note": "Scan spelling \"Kronbergs Green\"; printed reading うぐひすいろ (old kana)"
+ },
+ {
+  "index": 76,
+  "en": "Olive",
+  "kanji": "橄欖色",
+  "kana": "オリーブ",
+  "kanjiAsPrinted": "橄欖色",
+  "confidence": "high",
+  "source": "vol2-p14",
+  "note": "Reading printed in katakana as オリーブ (olive), not a hiragana reading"
+ },
+ {
+  "index": 77,
+  "en": "Orange Citrine",
+  "kanji": "銀煤竹",
+  "kana": "ぎんすすたけ",
+  "kanjiAsPrinted": "銀煤竹",
+  "confidence": "high",
+  "source": "vol4-p17",
+  "note": ""
+ },
+ {
+  "index": 78,
+  "en": "Sudan Brown",
+  "kanji": "丁字茶",
+  "kana": "ちょうじちゃ",
+  "kanjiAsPrinted": "丁字茶",
+  "confidence": "high",
+  "source": "vol4-p15",
+  "note": "Printed reading ちやうじちや (old kana)"
+ },
+ {
+  "index": 79,
+  "en": "Olive Green",
+  "kanji": "海松茶",
+  "kana": "みるちゃ",
+  "kanjiAsPrinted": "海松茶",
+  "confidence": "high",
+  "source": "vol2-p02",
+  "note": ""
+ },
+ {
+  "index": 80,
+  "en": "Light Brownish Olive",
+  "kanji": "鶯茶",
+  "kana": "うぐいすちゃ",
+  "kanjiAsPrinted": "鶯茶",
+  "confidence": "high",
+  "source": "vol4-p12",
+  "note": "Scan spelling \"Light Browish Olive\"; printed reading うぐひすちや (old kana)"
+ },
+ {
+  "index": 81,
+  "en": "Deep Grayish Olive",
+  "kanji": "生壁色",
+  "kana": "なまかべいろ",
+  "kanjiAsPrinted": "生壁色",
+  "confidence": "high",
+  "source": "vol3-p11",
+  "note": ""
+ },
+ {
+  "index": 82,
+  "en": "Pale Raw Umber",
+  "kanji": "媚茶色",
+  "kana": "こびちゃいろ",
+  "kanjiAsPrinted": "媚茶色",
+  "confidence": "high",
+  "source": "vol1-p11",
+  "note": ""
+ },
+ {
+  "index": 83,
+  "en": "Sepia",
+  "kanji": "憲法色",
+  "kana": "けんぽういろ",
+  "kanjiAsPrinted": "憲法色",
+  "confidence": "high",
+  "source": "vol1-p11",
+  "note": "Printed reading けんぱういろ (old kana) on vol5-p24"
+ },
+ {
+  "index": 84,
+  "en": "Madder Brown",
+  "kanji": "赤白橡",
+  "kana": "あかのしろつるばみ",
+  "kanjiAsPrinted": "赤白橡",
+  "confidence": "high",
+  "source": "vol1-p13",
+  "note": "Printed reading includes の: あかのしろつるばみ"
+ },
+ {
+  "index": 85,
+  "en": "Mars Brown Tobacco",
+  "kanji": "煙草色",
+  "kana": "たばこいろ",
+  "kanjiAsPrinted": "煙草色",
+  "confidence": "high",
+  "source": "vol1-p09",
+  "note": "Scan label \"Mars Brown Tobacco\" on two lines"
+ },
+ {
+  "index": 86,
+  "en": "Vandyke Brown",
+  "kanji": "焦茶色",
+  "kana": "こげちゃいろ",
+  "kanjiAsPrinted": "焦茶色",
+  "confidence": "high",
+  "source": "vol2-p20",
+  "note": ""
+ },
+ {
+  "index": 87,
+  "en": "Turquoise Green",
+  "kanji": "白緑",
+  "kana": "びゃくろく",
+  "kanjiAsPrinted": "白緑",
+  "confidence": "high",
+  "source": "vol1-p17",
+  "note": "Printed reading びやくろく; 緑 vs old form 綠 not resolvable in scan"
+ },
+ {
+  "index": 88,
+  "en": "Glaucous Green",
+  "kanji": "裏葉色",
+  "kana": "うらはいろ",
+  "kanjiAsPrinted": "裏葉色",
+  "confidence": "high",
+  "source": "vol1-p03",
+  "note": ""
+ },
+ {
+  "index": 89,
+  "en": "Dark Greenish Glaucous",
+  "kanji": "若苗色",
+  "kana": "わかなえいろ",
+  "kanjiAsPrinted": "若苗色",
+  "confidence": "high",
+  "source": "vol5-p12",
+  "note": "Printed reading わかなへいろ (old kana)"
+ },
+ {
+  "index": 90,
+  "en": "Yellow Green",
+  "kanji": "若草色",
+  "kana": "わかくさいろ",
+  "kanjiAsPrinted": "若草色",
+  "confidence": "high",
+  "source": "vol2-p21",
+  "note": "vol3-p09/p10 misprint the reading as かわくさいろ"
+ },
+ {
+  "index": 91,
+  "en": "Light Green Yellow",
+  "kanji": "鶸色",
+  "kana": "ひわいろ",
+  "kanjiAsPrinted": "鶸色",
+  "confidence": "high",
+  "source": "vol2-p01",
+  "note": "vol2-p01 label partly overlapped by a red stamp; confirmed on vol5-p24/p25 (same name, English printed there as \"Light Green\")"
+ },
+ {
+  "index": 92,
+  "en": "Night Green",
+  "kanji": "鶸萌木",
+  "kana": "ひわもえぎ",
+  "kanjiAsPrinted": "鶸萌木",
+  "confidence": "high",
+  "source": "vol1-p09",
+  "note": "Printed reading ひはもえき (old kana, dakuten omitted)"
+ },
+ {
+  "index": 93,
+  "en": "Olive Yellow",
+  "kanji": "苔色",
+  "kana": "こけいろ",
+  "kanjiAsPrinted": "苔色",
+  "confidence": "high",
+  "source": "vol3-p02",
+  "note": ""
+ },
+ {
+  "index": 94,
+  "en": "Artemesia Green",
+  "kanji": "千草鼠",
+  "kana": "ちぐさねずみ",
+  "kanjiAsPrinted": "千草鼠",
+  "confidence": "high",
+  "source": "vol5-p26",
+  "note": "Scan spelling \"Artemisia Green\""
+ },
+ {
+  "index": 95,
+  "en": "Andover Green",
+  "kanji": "山鳩色",
+  "kana": "やまばといろ",
+  "kanjiAsPrinted": "山鳩色",
+  "confidence": "high",
+  "source": "vol5-p02",
+  "note": ""
+ },
+ {
+  "index": 96,
+  "en": "Rainette Green",
+  "kanji": "松葉色",
+  "kana": "まつばいろ",
+  "kanjiAsPrinted": "松葉色",
+  "confidence": "high",
+  "source": "vol2-p04",
+  "note": ""
+ },
+ {
+  "index": 97,
+  "en": "Chromium Green",
+  "kanji": "老緑",
+  "kana": "おいみどり",
+  "kanjiAsPrinted": "老緑",
+  "confidence": "high",
+  "source": "vol2-p18",
+  "note": ""
+ },
+ {
+  "index": 98,
+  "en": "Pistachio Green",
+  "kanji": "木賊色",
+  "kana": "とくさいろ",
+  "kanjiAsPrinted": "木賊色",
+  "confidence": "high",
+  "source": "vol3-p03",
+  "note": ""
+ },
+ {
+  "index": 99,
+  "en": "Sea Green",
+  "kanji": "若竹色",
+  "kana": "わかたけいろ",
+  "kanjiAsPrinted": "若竹色",
+  "confidence": "high",
+  "source": "vol1-p07",
+  "note": ""
+ },
+ {
+  "index": 100,
+  "en": "Benzol Green",
+  "kanji": "青竹色",
+  "kana": "あおたけいろ",
+  "kanjiAsPrinted": "青竹色",
+  "confidence": "high",
+  "source": "vol1-p07",
+  "note": "Printed reading あをたけいろ (old kana)"
+ },
+ {
+  "index": 101,
+  "en": "Light Porcelain Green",
+  "kanji": "老竹色",
+  "kana": "おいたけいろ",
+  "kanjiAsPrinted": "老竹色",
+  "confidence": "high",
+  "source": "vol1-p21",
+  "note": ""
+ },
+ {
+  "index": 102,
+  "en": "Green",
+  "kanji": "緑色",
+  "kana": "みどりいろ",
+  "kanjiAsPrinted": "緑色",
+  "confidence": "high",
+  "source": "vol4-p10",
+  "note": "Second stroke detail of 緑 vs old form 綠 not resolvable in scan"
+ },
+ {
+  "index": 103,
+  "en": "Dull Viridian Green",
+  "kanji": "草色",
+  "kana": "くさいろ",
+  "kanjiAsPrinted": "草色",
+  "confidence": "high",
+  "source": "vol3-p07",
+  "note": ""
+ },
+ {
+  "index": 104,
+  "en": "Oil Green",
+  "kanji": "麹塵",
+  "kana": "きくじん",
+  "kanjiAsPrinted": "麹塵",
+  "confidence": "medium",
+  "source": "vol5-p02",
+  "note": "Reading きくぢん (old kana) clear on vol5-p02/p03 and vol6-p02; kanji small/faint - second is clearly 塵, first has the 麦 radical but printed form (麹 vs old 麴) not resolvable"
+ },
+ {
+  "index": 105,
+  "en": "Diamine Green",
+  "kanji": "常磐色",
+  "kana": "ときわいろ",
+  "kanjiAsPrinted": "常磐色",
+  "confidence": "high",
+  "source": "vol1-p17",
+  "note": "Printed reading ときはいろ (old kana)"
+ },
+ {
+  "index": 106,
+  "en": "Cossack Green",
+  "kanji": "萌木色",
+  "kana": "もえぎいろ",
+  "kanjiAsPrinted": "萌木色",
+  "confidence": "high",
+  "source": "vol1-p02",
+  "note": "vol3-p07 prints 萌木色(装束の) with reading もえぎいろ; vol1-p02 prints plain 萌木色"
+ },
+ {
+  "index": 107,
+  "en": "Lincoln Green",
+  "kanji": "海松色",
+  "kana": "みるいろ",
+  "kanjiAsPrinted": "海松色",
+  "confidence": "high",
+  "source": "vol2-p03",
+  "note": ""
+ },
+ {
+  "index": 108,
+  "en": "Blackish Olive",
+  "kanji": "藍海松茶",
+  "kana": "あいみるちゃ",
+  "kanjiAsPrinted": "藍海松茶",
+  "confidence": "high",
+  "source": "vol2-p20",
+  "note": "Printed reading あゐみるちや (old kana)"
+ },
+ {
+  "index": 109,
+  "en": "Deep Slate Olive",
+  "kanji": "千斎茶",
+  "kana": "せんさいちゃ",
+  "kanjiAsPrinted": "千斎茶",
+  "confidence": "high",
+  "source": "vol6-p10",
+  "note": "Middle glyph may be the old form 齋 (too small to tell). Reading printed せんさいちや on vol4-p24/p25 and vol6-p10; vol4-p04/p05 misprint せいさいちや"
+ },
+ {
+  "index": 110,
+  "en": "Nile Blue",
+  "kanji": "水色",
+  "kana": "みずいろ",
+  "kanjiAsPrinted": "水色",
+  "confidence": "high",
+  "source": "vol1-p11",
+  "note": "Printed reading みづいろ (old kana)"
+ },
+ {
+  "index": 111,
+  "en": "Pale King's Blue",
+  "kanji": "瓶覗",
+  "kana": "かめのぞき",
+  "kanjiAsPrinted": "瓶覗",
+  "confidence": "high",
+  "source": "vol1-p07",
+  "note": "Scan spelling \"Pale Kings Blue\""
+ },
+ {
+  "index": 112,
+  "en": "Light Glaucous Blue",
+  "kanji": "深川鼠",
+  "kana": "ふかがわねずみ",
+  "kanjiAsPrinted": "深川鼠",
+  "confidence": "high",
+  "source": "vol1-p25",
+  "note": "Printed reading ふかがはねずみ (old kana)"
+ },
+ {
+  "index": 113,
+  "en": "Salvia Blue",
+  "kanji": "空色",
+  "kana": "そらいろ",
+  "kanjiAsPrinted": "空色",
+  "confidence": "high",
+  "source": "vol1-p13",
+  "note": ""
+ },
+ {
+  "index": 114,
+  "en": "Cobalt Green",
+  "kanji": "青磁色",
+  "kana": "せいじいろ",
+  "kanjiAsPrinted": "青磁色",
+  "confidence": "high",
+  "source": "vol3-p17",
+  "note": "Also vol6-p10"
+ },
+ {
+  "index": 115,
+  "en": "Calamine BLue",
+  "kanji": "淡浅葱",
+  "kana": "うすあさぎ",
+  "kanjiAsPrinted": "淡淺葱",
+  "confidence": "high",
+  "source": "vol1-p09",
+  "note": "Scan spelling \"Calamine Blue\""
+ },
+ {
+  "index": 116,
+  "en": "Venice Green",
+  "kanji": "水浅葱",
+  "kana": "みずあさぎ",
+  "kanjiAsPrinted": "水淺葱",
+  "confidence": "high",
+  "source": "vol2-p05",
+  "note": "Printed reading みづあさぎ (old kana)"
+ },
+ {
+  "index": 117,
+  "en": "Cerulian Blue",
+  "kanji": "花浅葱",
+  "kana": "はなあさぎ",
+  "kanjiAsPrinted": "花淺葱",
+  "confidence": "high",
+  "source": "vol1-p01",
+  "note": "Scan spelling \"Cerulian Blue\""
+ },
+ {
+  "index": 118,
+  "en": "Peacock Blue",
+  "kanji": "浅葱色",
+  "kana": "あさぎいろ",
+  "kanjiAsPrinted": "淺葱色",
+  "confidence": "high",
+  "source": "vol3-p05",
+  "note": ""
+ },
+ {
+  "index": 119,
+  "en": "Green Blue",
+  "kanji": "納戸鼠",
+  "kana": "なんどねずみ",
+  "kanjiAsPrinted": "納戸鼠",
+  "confidence": "high",
+  "source": "vol1-p05",
+  "note": ""
+ },
+ {
+  "index": 120,
+  "en": "Olympic Blue",
+  "kanji": "浅縹",
+  "kana": "うすはなだ",
+  "kanjiAsPrinted": "淺縹",
+  "confidence": "high",
+  "source": "vol1-p21",
+  "note": ""
+ },
+ {
+  "index": 121,
+  "en": "Blue",
+  "kanji": "青色",
+  "kana": "あおいろ",
+  "kanjiAsPrinted": "青色",
+  "confidence": "high",
+  "source": "vol1-p23",
+  "note": "Printed reading あをいろ (old kana); confirmed vol6-p10"
+ },
+ {
+  "index": 122,
+  "en": "Antwarp Blue",
+  "kanji": "納戸色",
+  "kana": "なんどいろ",
+  "kanjiAsPrinted": "納戸色",
+  "confidence": "high",
+  "source": "vol2-p08",
+  "note": "Scan spelling \"Antwarp Blue\""
+ },
+ {
+  "index": 123,
+  "en": "Helvetia Blue",
+  "kanji": "活色、勝色",
+  "kana": "かついろ",
+  "kanjiAsPrinted": "活色、勝色",
+  "confidence": "high",
+  "source": "vol1-p19",
+  "note": "Printed as two alternative spellings \"活色，勝色\" sharing one reading"
+ },
+ {
+  "index": 124,
+  "en": "Dark Medici Blue",
+  "kanji": "藍鼠",
+  "kana": "あいねずみ",
+  "kanjiAsPrinted": "藍鼠",
+  "confidence": "high",
+  "source": "vol3-p19",
+  "note": "Printed reading あゐねずみ (old kana)"
+ },
+ {
+  "index": 125,
+  "en": "Dusky Green",
+  "kanji": "海松藍",
+  "kana": "みるあい",
+  "kanjiAsPrinted": "海松藍",
+  "confidence": "high",
+  "source": "vol2-p12",
+  "note": "Printed reading みるあゐ (old kana); confirmed vol6-p10"
+ },
+ {
+  "index": 126,
+  "en": "Deep Lyons Blue",
+  "kanji": "群青色",
+  "kana": "ぐんじょういろ",
+  "kanjiAsPrinted": "群青色",
+  "confidence": "high",
+  "source": "vol1-p09",
+  "note": "Printed reading ぐんじやういろ (old kana)"
+ },
+ {
+  "index": 127,
+  "en": "Violet Blue",
+  "kanji": "花色",
+  "kana": "はないろ",
+  "kanjiAsPrinted": "花色",
+  "confidence": "high",
+  "source": "vol2-p05",
+  "note": ""
+ },
+ {
+  "index": 128,
+  "en": "Vandar Poel's Blue",
+  "kanji": "縹色",
+  "kana": "はなだいろ",
+  "kanjiAsPrinted": "縹色",
+  "confidence": "high",
+  "source": "vol1-p02",
+  "note": "Scan spelling \"Vandar Poel's Blue\""
+ },
+ {
+  "index": 129,
+  "en": "Dark Tyrian Blue",
+  "kanji": "深縹",
+  "kana": "こきはなだ",
+  "kanjiAsPrinted": "深縹",
+  "confidence": "high",
+  "source": "vol1-p01",
+  "note": "vol1-p01 and vol2-p03 print 深縹; vol1-p29 prints 濃縹 (same reading こきはなだ)"
+ },
+ {
+  "index": 130,
+  "en": "Dull Violet Black",
+  "kanji": "褐色、勝色、搗色",
+  "kana": "かちいろ",
+  "kanjiAsPrinted": "褐色、勝色、搗色",
+  "confidence": "high",
+  "source": "vol2-p14",
+  "note": "Printed as three alternative spellings \"褐色，勝色，搗色\" sharing one reading"
+ },
+ {
+  "index": 131,
+  "en": "Deep Indigo",
+  "kanji": "紺色",
+  "kana": "こんいろ",
+  "kanjiAsPrinted": "紺色",
+  "confidence": "high",
+  "source": "vol1-p02",
+  "note": ""
+ },
+ {
+  "index": 132,
+  "en": "Deep Slate Green",
+  "kanji": "鉄色",
+  "kana": "てついろ",
+  "kanjiAsPrinted": "鐵色",
+  "confidence": "high",
+  "source": "vol2-p08",
+  "note": ""
+ },
+ {
+  "index": 133,
+  "en": "Grayish Lavender - A",
+  "kanji": "藤色",
+  "kana": "ふじいろ",
+  "kanjiAsPrinted": "藤色",
+  "confidence": "high",
+  "source": "vol1-p03",
+  "note": "Scan label \"Grayish Lavender\"; bluish-lavender swatch matches variant A. Printed reading ふぢいろ"
+ },
+ {
+  "index": 134,
+  "en": "Grayish Lavender - B",
+  "kanji": "薄色",
+  "kana": "うすいろ",
+  "kanjiAsPrinted": "薄色",
+  "confidence": "high",
+  "source": "vol1-p23",
+  "note": "Scan label \"Grayish Lavender\"; pinkish-grey swatch matches variant B"
+ },
+ {
+  "index": 135,
+  "en": "Laelia Pink",
+  "kanji": "紅藤",
+  "kana": "べにふじ",
+  "kanjiAsPrinted": "紅藤",
+  "confidence": "high",
+  "source": "vol1-p09",
+  "note": "Printed reading べにふぢ (old kana)"
+ },
+ {
+  "index": 136,
+  "en": "Lilac",
+  "kanji": "鳩羽紫",
+  "kana": "はとばむらさき",
+  "kanjiAsPrinted": "鳩羽紫",
+  "confidence": "high",
+  "source": "vol3-p11",
+  "note": ""
+ },
+ {
+  "index": 137,
+  "en": "Eupatorium Purple",
+  "kanji": "梅紫",
+  "kana": "うめむらさき",
+  "kanjiAsPrinted": "梅紫",
+  "confidence": "high",
+  "source": "vol4-p19",
+  "note": ""
+ },
+ {
+  "index": 138,
+  "en": "Light Mauve",
+  "kanji": "浅紫",
+  "kana": "うすむらさき",
+  "kanjiAsPrinted": "淺紫",
+  "confidence": "high",
+  "source": "vol1-p11",
+  "note": ""
+ },
+ {
+  "index": 139,
+  "en": "Aconite Violet",
+  "kanji": "半色",
+  "kana": "はしたいろ",
+  "kanjiAsPrinted": "半色",
+  "confidence": "high",
+  "source": "vol1-p21",
+  "note": ""
+ },
+ {
+  "index": 140,
+  "en": "Dull Blue Violet",
+  "kanji": "藤納戸",
+  "kana": "ふじなんど",
+  "kanjiAsPrinted": "藤納戸",
+  "confidence": "high",
+  "source": "vol1-p03",
+  "note": "Printed reading ふぢなんど (old kana)"
+ },
+ {
+  "index": 141,
+  "en": "Dark Soft Violet",
+  "kanji": "二藍",
+  "kana": "ふたあい",
+  "kanjiAsPrinted": "二藍",
+  "confidence": "high",
+  "source": "vol2-p02",
+  "note": "Printed reading ふたあゐ on vol3-p03 (old kana)"
+ },
+ {
+  "index": 142,
+  "en": "Blue Violet",
+  "kanji": "桔梗色",
+  "kana": "ききょういろ",
+  "kanjiAsPrinted": "桔梗色",
+  "confidence": "high",
+  "source": "vol2-p23",
+  "note": "Printed reading ききやういろ (old kana)"
+ },
+ {
+  "index": 143,
+  "en": "Purple Drab",
+  "kanji": "浅滅紫",
+  "kana": "うすけしむらさき",
+  "kanjiAsPrinted": "淺滅紫",
+  "confidence": "high",
+  "source": "vol4-p28",
+  "note": ""
+ },
+ {
+  "index": 144,
+  "en": "Deep Violet / Plumbeous",
+  "kanji": "藤鼠",
+  "kana": "ふじねずみ",
+  "kanjiAsPrinted": "藤鼠",
+  "confidence": "high",
+  "source": "vol4-p02",
+  "note": "Scan label \"Deep Violet / Plumbeous\" on two lines; printed reading ふぢねずみ (old kana)"
+ },
+ {
+  "index": 145,
+  "en": "Veronia Purple",
+  "kanji": "牡丹鼠",
+  "kana": "ぼたんねずみ",
+  "kanjiAsPrinted": "牡丹鼠",
+  "confidence": "high",
+  "source": "vol1-p05",
+  "note": "Scan spelling \"Vernonia Purple\""
+ },
+ {
+  "index": 146,
+  "en": "Dark Slate Purple",
+  "kanji": "蒲萄色",
+  "kana": "えびいろ",
+  "kanjiAsPrinted": "蒲萄色",
+  "confidence": "high",
+  "source": "vol4-p22",
+  "note": "Printed with 蒲 (water radical) rather than the usual 葡萄色; same reading えびいろ"
+ },
+ {
+  "index": 147,
+  "en": "Taupe Brown",
+  "kanji": "濃色",
+  "kana": "こきいろ",
+  "kanjiAsPrinted": "濃色(装束の)",
+  "confidence": "high",
+  "source": "vol1-p27",
+  "note": "Printed with parenthetical (装束の) \"as in court dress\""
+ },
+ {
+  "index": 148,
+  "en": "Violet Carmine",
+  "kanji": "桑染色",
+  "kana": "くわぞめいろ",
+  "kanjiAsPrinted": "桑染色",
+  "confidence": "high",
+  "source": "vol6-p11",
+  "note": "Printed reading くはぞめいろ (old kana); scan prints \"V.olet Carmine\" (damaged i)"
+ },
+ {
+  "index": 149,
+  "en": "Violet",
+  "kanji": "紫色",
+  "kana": "むらさきいろ",
+  "kanjiAsPrinted": "紫色(純色)",
+  "confidence": "high",
+  "source": "vol1-p19",
+  "note": "Printed with parenthetical (純色) \"pure colour\""
+ },
+ {
+  "index": 150,
+  "en": "Red Violet",
+  "kanji": "菖蒲色",
+  "kana": "あやめいろ",
+  "kanjiAsPrinted": "菖蒲色",
+  "confidence": "high",
+  "source": "vol1-p02",
+  "note": ""
+ },
+ {
+  "index": 151,
+  "en": "Cotinga Purple",
+  "kanji": "杜若色",
+  "kana": "かきつばたいろ",
+  "kanjiAsPrinted": "杜若色",
+  "confidence": "high",
+  "source": "vol2-p01",
+  "note": ""
+ },
+ {
+  "index": 152,
+  "en": "Dusky Madder Violet",
+  "kanji": "黒紫",
+  "kana": "こくし",
+  "kanjiAsPrinted": "黒紫",
+  "confidence": "high",
+  "source": "vol1-p08",
+  "note": "Scan spelling \"Dasky Madder Violet\""
+ },
+ {
+  "index": 153,
+  "en": "White",
+  "kanji": "白色",
+  "kana": "しろいろ",
+  "kanjiAsPrinted": "白色",
+  "confidence": "high",
+  "source": "vol1-p27",
+  "note": ""
+ },
+ {
+  "index": 154,
+  "en": "Neutral Gray",
+  "kanji": "銀鼠",
+  "kana": "ぎんねず",
+  "kanjiAsPrinted": "銀鼠",
+  "confidence": "high",
+  "source": "vol1-p15",
+  "note": "Printed reading ぎんねず (not ぎんねずみ)"
+ },
+ {
+  "index": 155,
+  "en": "Mineral Gray",
+  "kanji": "鼠色",
+  "kana": "ねずみいろ",
+  "kanjiAsPrinted": "鼠色",
+  "confidence": "high",
+  "source": "vol1-p05",
+  "note": ""
+ },
+ {
+  "index": 156,
+  "en": "Warm Gray",
+  "kanji": "灰色",
+  "kana": "はいいろ",
+  "kanjiAsPrinted": "灰色",
+  "confidence": "high",
+  "source": "vol2-p03",
+  "note": "Printed reading はひいろ (old kana)"
+ },
+ {
+  "index": 157,
+  "en": "Slate Color",
+  "kanji": "石板色",
+  "kana": "せきばんいろ",
+  "kanjiAsPrinted": "石板色",
+  "confidence": "high",
+  "source": "vol1-p13",
+  "note": ""
+ },
+ {
+  "index": 158,
+  "en": "Black",
+  "kanji": "黒色",
+  "kana": "くろいろ",
+  "kanjiAsPrinted": "黒色",
+  "confidence": "high",
+  "source": "vol1-p21",
+  "note": ""
+ }
+]

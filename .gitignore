@@ -1,0 +1,5 @@
+# NDL scans of the Haishoku Soukan (1.2 GB of PDFs, kept out of git)
+haishoku-soukan/
+
+# Vite cache
+.vite/
