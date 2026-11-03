@@ -9,6 +9,11 @@
   --stamp: #505c82;
   --stamp-deep: #3e486a;
   --accession: #4f7a8e;
+  --badge: rgb(251 237 210 / 0.92);
+  --hairline: rgb(149 115 86 / 0.5);
+  --hairline-soft: rgb(149 115 86 / 0.4);
+  --err: #9b3b2a;
+  color-scheme: light;
 
   --jp: 'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', 'Noto Serif JP', 'Noto Serif CJK JP', serif;
   --en: 'Century Schoolbook', 'New Century Schoolbook', 'TeX Gyre Schola', 'Century', Georgia, serif;
@@ -33,6 +38,29 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Night: the same plates read by lamplight — sumi-ink mat, paper gone umber,
+   stamp and accession inks lifted so they keep their contrast. */
+:root[data-theme='night'] {
+  --mat: #171513;
+  --paper: #25211c;
+  --paper-deep: #2f2a23;
+  --rule: #866c56;
+  --label: #bba387;
+  --ink: #f1e2c4;
+  --stamp: #a3aedb;
+  --stamp-deep: #c0c8ea;
+  --accession: #8dbccf;
+  --badge: rgb(37 33 28 / 0.9);
+  --hairline: rgb(134 108 86 / 0.6);
+  --hairline-soft: rgb(134 108 86 / 0.45);
+  --err: #e3907a;
+  --lift: 0 1px 0 rgb(0 0 0 / 0.45), 0 12px 28px -14px rgb(0 0 0 / 0.85);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.88 0 0 0 0 0.75 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color-scheme: dark;
+}
+:root[data-theme='night'] .btn-ink { color: var(--mat); }
+:root[data-theme='night'] .chip[aria-checked='true'] { color: var(--mat); }
+
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100dvh; }
 button { font: inherit; color: inherit; cursor: pointer; }
@@ -46,7 +74,29 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* ---------- Header ---------- */
 
-.top { padding: var(--s1) var(--s1) var(--s3); text-align: center; }
+.top { position: relative; padding: var(--s1) var(--s1) var(--s3); text-align: center; }
+
+.theme-switch {
+  position: absolute;
+  top: var(--s1);
+  right: 0;
+  display: flex;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+}
+.theme-switch button {
+  min-height: 32px;
+  padding: 0 var(--s2);
+  border: 0;
+  background: none;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  color: var(--label);
+}
+.theme-switch button + button { border-left: 1px solid var(--rule); }
+.theme-switch button:hover { color: var(--ink); background: var(--paper-deep); }
+.theme-switch button[aria-checked='true'] { background: var(--stamp); color: var(--paper); }
+:root[data-theme='night'] .theme-switch button[aria-checked='true'] { color: var(--mat); }
 .brand { margin: 0; font-weight: normal; font-size: 26px; letter-spacing: 0.06em; }
 .provenance { margin: var(--s1) 0 0; font-size: 13px; color: var(--label); }
 .provenance [lang='ja'] { font-family: var(--jp); letter-spacing: 0.1em; }
@@ -127,14 +177,14 @@ main { display: grid; gap: var(--s4); }
   font-family: var(--num);
   font-size: 14px;
   font-weight: 700;
-  background: rgb(251 237 210 / 0.92);
+  background: var(--badge);
   border: 1px solid var(--rule);
   padding: 1px 7px;
 }
 .chord-name, .chord-en {
   font-size: 12px;
-  background: rgb(251 237 210 / 0.92);
-  border: 1px solid rgb(149 115 86 / 0.5);
+  background: var(--badge);
+  border: 1px solid var(--hairline);
   padding: 0 6px;
   max-width: 100%;
   overflow: hidden;
@@ -149,7 +199,7 @@ main { display: grid; gap: var(--s4); }
   width: 32px;
   height: 32px;
   border: 1px solid var(--rule);
-  background: rgb(251 237 210 / 0.92);
+  background: var(--badge);
   font-size: 18px;
   line-height: 1;
   color: var(--ink);
@@ -199,14 +249,14 @@ main { display: grid; gap: var(--s4); }
 .chip-n { font-family: var(--num); font-size: 12px; opacity: 0.8; }
 .filter-sound { margin: var(--s2) 0 0; min-height: 1.45em; text-align: center; font-size: 13px; font-style: italic; color: var(--accession); }
 
-.suggestions { list-style: none; margin: var(--s2) 0 0; padding: 0; border-top: 1px solid rgb(149 115 86 / 0.4); }
+.suggestions { list-style: none; margin: var(--s2) 0 0; padding: 0; border-top: 1px solid var(--hairline-soft); }
 .sugg {
   display: grid;
   grid-template-columns: 52px 1fr auto;
   align-items: center;
   gap: var(--s3);
   padding: var(--s3) 0;
-  border-bottom: 1px solid rgb(149 115 86 / 0.4);
+  border-bottom: 1px solid var(--hairline-soft);
 }
 .sugg-sw { width: 52px; height: 52px; outline: 1px solid var(--rule); outline-offset: 3px; }
 .sugg-body { display: grid; gap: 2px; min-width: 0; }
@@ -215,7 +265,7 @@ main { display: grid; gap: var(--s4); }
 .sugg-note { font-family: var(--num); font-size: 12px; color: var(--accession); white-space: nowrap; }
 .sugg-why { font-size: 13px; color: var(--label); }
 .sugg-tags { display: flex; flex-wrap: wrap; gap: var(--s1); margin-top: 2px; }
-.tag { font-size: 11px; letter-spacing: 0.03em; padding: 0 6px; border: 1px solid rgb(149 115 86 / 0.5); color: var(--label); }
+.tag { font-size: 11px; letter-spacing: 0.03em; padding: 0 6px; border: 1px solid var(--hairline); color: var(--label); }
 .tag-wada { border-color: var(--stamp); color: var(--stamp); }
 .sugg-actions { display: flex; gap: var(--s1); }
 .sugg-empty { padding: var(--s4) 0; text-align: center; font-size: 14px; color: var(--label); }
@@ -241,7 +291,7 @@ main { display: grid; gap: var(--s4); }
 }
 .field input:focus-visible { outline-offset: 0; }
 .form-msg { margin: 0; min-height: 1.3em; font-size: 13px; text-align: center; color: var(--accession); }
-.form-msg[data-tone='err'] { color: #9b3b2a; }
+.form-msg[data-tone='err'] { color: var(--err); }
 
 /* ---------- Pinned / submitted cards ---------- */
 
@@ -274,6 +324,8 @@ main { display: grid; gap: var(--s4); }
 .credits [lang='ja'] { font-family: var(--jp); }
 
 @media (max-width: 520px) {
+  .top { display: flex; flex-direction: column; align-items: center; }
+  .theme-switch { position: static; align-self: flex-end; margin-bottom: var(--s2); }
   .plate { padding: var(--s3) var(--s3) var(--s4); }
   .chord-en { display: none; }
   .chord-strip, .chord-sw { min-height: 168px; }
@@ -286,4 +338,57 @@ main { display: grid; gap: var(--s4); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+}
+
+/* ---------- 3D piano ---------- */
+
+.piano-stage {
+  position: relative;
+  height: 400px;
+  margin: var(--s4) 0 0;
+  border: 1px solid var(--rule);
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 72%, var(--paper-deep), transparent 75%),
+    var(--paper);
+  overflow: hidden;
+}
+:root[data-theme='night'] .piano-stage {
+  background:
+    radial-gradient(ellipse 55% 50% at 50% 60%, rgb(241 226 196 / 0.07), transparent 75%),
+    var(--mat);
+}
+.piano-canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; }
+.piano-status {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: var(--s4);
+  font-size: 14px;
+  color: var(--label);
+  text-align: center;
+}
+.piano-caption {
+  position: absolute;
+  left: 50%;
+  bottom: var(--s2);
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 2 * var(--s2));
+  padding: 2px var(--s2);
+  /* Backed in the stage colour so the piano's legs never cut through the words. */
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  font-size: 12px;
+  color: var(--label);
+  text-align: center;
+  pointer-events: none;
+}
+:root[data-theme='night'] .piano-caption { background: color-mix(in srgb, var(--mat) 88%, transparent); }
+.piano-status[hidden] { display: none; }
+.piano-stage.is-unavailable { height: auto; min-height: 88px; }
+.piano-stage.is-unavailable .piano-caption { display: none; }
+
+@media (max-width: 520px) {
+  .piano-stage { height: 300px; }
 }

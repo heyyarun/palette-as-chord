@@ -4,6 +4,8 @@ import { hexToRgb, rgbToLab } from './color.ts'
 import { RELATIONS, nameFor, suggestionsFor, type Relation, type Suggestion } from './harmony.ts'
 import { combinations, palette } from './palette.ts'
 import { loadAuthor, loadPins, newPin, saveAuthor, savePins, type Pin } from './pins.ts'
+import type { Piano } from './piano3d.ts'
+import { applyTheme, followSystem, loadThemePref, setThemePref, type ThemePref } from './theme.ts'
 import { LIMITS, listSubmissions, submitPalette, type StoredSubmission } from './submission.ts'
 
 const esc = (s: string) =>
@@ -12,6 +14,11 @@ const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel)!
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <header class="top">
+  <div class="theme-switch" role="radiogroup" aria-label="Theme" id="theme-switch">
+    <button type="button" role="radio" data-theme-pref="paper">Paper</button>
+    <button type="button" role="radio" data-theme-pref="night">Night</button>
+    <button type="button" role="radio" data-theme-pref="auto">Auto</button>
+  </div>
   <h1 class="brand">Palette as Chord</h1>
   <p class="provenance">After Sanzo Wada's <span lang="ja">配色総鑑</span> (1933–35)</p>
 </header>
@@ -32,6 +39,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button type="button" class="btn btn-ink" id="play">Play chord</button>
       <button type="button" class="btn btn-line" id="arp">Arpeggio</button>
     </div>
+    <figure class="piano-stage" id="piano-stage">
+      <p class="piano-status" id="piano-status">Tuning the piano…</p>
+      <figcaption class="piano-caption">Tap a key to play it</figcaption>
+    </figure>
     <p class="hint">Hue wraps onto pitch (30° = one semitone), lightness picks the octave. Tap a swatch to hear its note.</p>
   </article>
 
@@ -82,6 +93,37 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 </main>
 `
 
+// ---------- Theme ----------
+
+let themePref: ThemePref = loadThemePref()
+const themeSwitch = $<HTMLDivElement>('#theme-switch')
+function renderThemeSwitch() {
+  for (const b of themeSwitch.querySelectorAll<HTMLButtonElement>('[data-theme-pref]')) {
+    const on = b.dataset.themePref === themePref
+    b.setAttribute('aria-checked', String(on))
+    b.tabIndex = on ? 0 : -1
+  }
+}
+themeSwitch.addEventListener('click', (e) => {
+  const b = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-theme-pref]')
+  if (!b) return
+  themePref = b.dataset.themePref as ThemePref
+  setThemePref(themePref)
+  renderThemeSwitch()
+})
+// Arrow keys move between options, as a radio group should.
+themeSwitch.addEventListener('keydown', (e) => {
+  if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return
+  const opts = [...themeSwitch.querySelectorAll<HTMLButtonElement>('[data-theme-pref]')]
+  const i = opts.findIndex((o) => o.dataset.themePref === themePref)
+  const next = opts[(i + (e.key === 'ArrowRight' ? 1 : -1) + opts.length) % opts.length]
+  next.click()
+  next.focus()
+})
+applyTheme(themePref)
+followSystem(() => themePref)
+renderThemeSwitch()
+
 // ---------- State ----------
 
 const comboKeys = [...combinations.keys()].sort((a, b) => a - b)
@@ -126,13 +168,15 @@ function renderComposer() {
       ? `<a class="chord-slot" href="#grow-title" aria-label="Add a colour from the suggestions below"><span>+</span></a>`
       : '')
   $('#reading').textContent = chordReading(notes)
+  piano?.setChord(notes.map((n) => ({ midi: n.midi, color: palette[n.id].hex, label: n.name })))
   refreshAutoName()
   renderSuggestions()
 }
 
-/** Light each swatch as its note sounds. */
+/** Light each swatch, and press its piano key, as its note sounds. */
 function flash(notes: ChordNote[], step: number) {
   notes.forEach((n, i) => {
+    piano?.strike(n.midi, i * step)
     const el = strip.querySelector<HTMLElement>(`.chord-sw[data-id="${n.id}"]`)
     if (!el) return
     el.classList.remove('is-sounding')
@@ -195,6 +239,60 @@ const step = (dir: 1 | -1) => {
 $('#src-prev').addEventListener('click', () => step(-1))
 $('#src-next').addEventListener('click', () => step(1))
 $('#src-shuffle').addEventListener('click', () => setSource(comboKeys[Math.floor(Math.random() * comboKeys.length)]))
+
+// ---------- 3D piano ----------
+
+let piano: Piano | null = null
+const stage = $<HTMLElement>('#piano-stage')
+const pianoStatus = $<HTMLParagraphElement>('#piano-status')
+const currentTheme = () => (document.documentElement.dataset.theme === 'night' ? 'night' : 'paper')
+
+function canUseWebGL(): boolean {
+  try {
+    const c = document.createElement('canvas')
+    return !!(c.getContext('webgl2') || c.getContext('webgl'))
+  } catch {
+    return false
+  }
+}
+
+async function loadPiano() {
+  if (!canUseWebGL()) {
+    pianoStatus.textContent = 'This browser cannot draw 3D, so the piano is hidden. The swatches above still play.'
+    stage.classList.add('is-unavailable')
+    return
+  }
+  try {
+    const { mountPiano } = await import('./piano3d.ts')
+    piano = mountPiano(stage, currentTheme())
+    piano.onKey((midi) => {
+      playNote(440 * Math.pow(2, (midi - 69) / 12))
+      // A key in the chord also lights its swatch; flash() presses the key.
+      const n = notesOf(ids).find((x) => x.midi === midi)
+      if (n) flash([n], 0)
+      else piano!.strike(midi)
+    })
+    pianoStatus.hidden = true
+    stage.classList.add('is-ready')
+    renderComposer()
+  } catch (err) {
+    console.error(err)
+    pianoStatus.textContent = 'The piano could not load. The swatches above still play.'
+    stage.classList.add('is-unavailable')
+  }
+}
+
+// Only fetch three.js when the piano is about to scroll into view.
+const stageWatch = new IntersectionObserver(
+  (entries) => {
+    if (!entries.some((e) => e.isIntersecting)) return
+    stageWatch.disconnect()
+    void loadPiano()
+  },
+  { rootMargin: '300px' },
+)
+stageWatch.observe(stage)
+document.addEventListener('themechange', () => piano?.setTheme(currentTheme()))
 
 // ---------- Suggestions ----------
 

@@ -11,9 +11,13 @@
     "test": "vitest run"
   },
   "devDependencies": {
+    "@types/three": "^0.181.0",
     "@vitejs/plugin-basic-ssl": "^2.3.0",
     "typescript": "~7.0.2",
     "vite": "^8.3.5",
     "vitest": "^5.0.5"
+  },
+  "dependencies": {
+    "three": "^0.181.2"
   }
 }
