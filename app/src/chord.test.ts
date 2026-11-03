@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { ARPEGGIO_STEP, chordFor, chordReading, intervalName, labHue, noteFor, octaveForLightness, playArpeggio } from './chord.ts'
+import { ARPEGGIO_STEP, chordFor, chordReading, intervalName, labHue, noteFor, octaveForLightness, playArpeggio, requestPlaybackSession, silentSwitchMutes, type AudioSessionProbe } from './chord.ts'
 import { palette } from './palette.ts'
 
 describe('labHue', () => {
@@ -139,5 +139,28 @@ describe('playArpeggio', () => {
     // The remaining notes never start.
     vi.advanceTimersByTime(ARPEGGIO_STEP * 1000 * notes.length)
     expect(oscs).toHaveLength(1)
+  })
+})
+
+describe('iOS silent switch', () => {
+  const desktop: AudioSessionProbe = { userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X)', platform: 'MacIntel', maxTouchPoints: 0 }
+  const iphone: AudioSessionProbe = { userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X)', platform: 'iPhone', maxTouchPoints: 5 }
+
+  it('requests the playback session where supported', () => {
+    const audioSession = { type: 'ambient' }
+    requestPlaybackSession({ ...iphone, audioSession })
+    expect(audioSession.type).toBe('playback')
+  })
+
+  it('ignores a missing Audio Session API', () => {
+    expect(() => requestPlaybackSession(desktop)).not.toThrow()
+  })
+
+  it('warns only on iOS without the Audio Session API', () => {
+    expect(silentSwitchMutes(iphone)).toBe(true)
+    expect(silentSwitchMutes({ ...iphone, audioSession: { type: 'playback' } })).toBe(false)
+    expect(silentSwitchMutes(desktop)).toBe(false)
+    // iPadOS reports a Mac platform; touch gives it away.
+    expect(silentSwitchMutes({ ...desktop, maxTouchPoints: 5 })).toBe(true)
   })
 })

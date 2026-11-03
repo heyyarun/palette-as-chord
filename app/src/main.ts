@@ -1,5 +1,5 @@
 import './style.css'
-import { ARPEGGIO_STEP, STRUM, chordFor, chordReading, playArpeggio, playChord, playNote, type ChordNote } from './chord.ts'
+import { ARPEGGIO_STEP, STRUM, chordFor, chordReading, playArpeggio, playChord, playNote, silentSwitchMutes, type ChordNote } from './chord.ts'
 import { hexToRgb, rgbToLab } from './color.ts'
 import { RELATIONS, nameFor, suggestionsFor, type Relation, type Suggestion } from './harmony.ts'
 import { combinations, palette } from './palette.ts'
@@ -39,6 +39,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button type="button" class="btn btn-ink" id="play">Play chord</button>
       <button type="button" class="btn btn-line" id="arp">Arpeggio</button>
     </div>
+    <p class="silent-hint" id="silent-hint" hidden>No sound on iPhone? Silent mode mutes web audio here — turn the Ring/Silent switch off.</p>
     <figure class="piano-stage" id="piano-stage">
       <p class="piano-status" id="piano-status">Tuning the piano…</p>
       <figcaption class="piano-caption">Tap a key to play it</figcaption>
@@ -567,3 +568,5 @@ listSubmissions()
 renderComposer()
 renderBoard()
 renderWall()
+// Older iOS mutes web audio on silent with no override; say so up front.
+$<HTMLElement>('#silent-hint').hidden = !silentSwitchMutes(navigator)

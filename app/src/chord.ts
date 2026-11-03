@@ -102,8 +102,33 @@ export function chordReading(notes: ChordNote[]): string {
 
 let sharedCtx: AudioContext | null = null
 
+export type AudioSessionProbe = Pick<Navigator, 'userAgent' | 'platform' | 'maxTouchPoints'> & {
+  audioSession?: { type: string }
+}
+
+/** Route Web Audio through the playback channel so the chord sounds even
+ *  with the Ring/Silent switch on. Safari 17+ only; no-op elsewhere. */
+export function requestPlaybackSession(nav: AudioSessionProbe): void {
+  try {
+    if (nav.audioSession) nav.audioSession.type = 'playback'
+  } catch {
+    /* read-only or unsupported: the silent switch keeps working */
+  }
+}
+
+/** True where the page cannot make sound on silent: iOS without the Audio
+ *  Session API (Safari < 17), where Web Audio stays ambient and the
+ *  Ring/Silent switch mutes it. */
+export function silentSwitchMutes(nav: AudioSessionProbe): boolean {
+  if (nav.audioSession) return false
+  if (/iPhone|iPad|iPod/.test(nav.userAgent)) return true
+  // iPadOS reports a Mac platform; touch gives it away.
+  return nav.platform === 'MacIntel' && nav.maxTouchPoints > 1
+}
+
 function ctx(): AudioContext | null {
   if (typeof window === 'undefined') return null
+  requestPlaybackSession(navigator)
   const AC = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
   if (!AC) return null
   sharedCtx ??= new AC()

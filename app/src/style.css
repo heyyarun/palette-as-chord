@@ -232,6 +232,7 @@ main { display: grid; gap: var(--s4); }
   text-wrap: balance;
 }
 .chord-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--s2); padding-top: var(--s3); }
+.silent-hint { margin: var(--s2) 0 0; text-align: center; font-size: 13px; color: var(--label); text-wrap: pretty; }
 
 /* ---------- Suggestions ---------- */
 
