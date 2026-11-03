@@ -169,6 +169,15 @@ export const ARPEGGIO_STEP = 0.24
 /** Play the notes one after another, low to high. Returns a stop function. */
 export function playArpeggio(notes: ChordNote[], audio = ctx()): () => void {
   if (!audio) return () => {}
-  const timers = notes.map((n, i) => window.setTimeout(() => playNote(n.freq, 1.1, audio), i * ARPEGGIO_STEP * 1000))
-  return () => timers.forEach((t) => window.clearTimeout(t))
+  // playNote's stop never throws: it swallows "already stopped" itself.
+  const stops: Array<() => void> = []
+  const timers = notes.map((n, i) =>
+    window.setTimeout(() => {
+      stops.push(playNote(n.freq, 1.1, audio))
+    }, i * ARPEGGIO_STEP * 1000),
+  )
+  return () => {
+    for (const t of timers) window.clearTimeout(t)
+    for (const stop of stops.splice(0)) stop()
+  }
 }

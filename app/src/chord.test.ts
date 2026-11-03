@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest'
-import { chordFor, chordReading, intervalName, labHue, noteFor, octaveForLightness } from './chord.ts'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { ARPEGGIO_STEP, chordFor, chordReading, intervalName, labHue, noteFor, octaveForLightness, playArpeggio } from './chord.ts'
 import { palette } from './palette.ts'
 
 describe('labHue', () => {
@@ -67,5 +67,77 @@ describe('chordFor', () => {
     expect(intervalName(6)).toBe('tritone')
     expect(intervalName(0)).toBe('unison')
     expect(intervalName(12)).toBe('octave')
+  })
+})
+
+describe('playArpeggio', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+    vi.unstubAllGlobals()
+  })
+
+  it('stop silences notes already sounding and cancels the rest', () => {
+    vi.useFakeTimers()
+    // playArpeggio schedules with window timers; point them at the faked clock.
+    vi.stubGlobal('window', {
+      setTimeout: (...args: [() => void, number]) => setTimeout(...args),
+      clearTimeout: (t: ReturnType<typeof setTimeout>) => clearTimeout(t),
+    })
+    interface FakeOsc {
+      stopArgs: unknown[][]
+    }
+    const oscs: FakeOsc[] = []
+    const audio = {
+      currentTime: 0,
+      destination: {},
+      createOscillator: () => {
+        const osc: FakeOsc & {
+          type: OscillatorType
+          frequency: { value: number }
+          connect: () => { connect: () => void }
+          start: () => void
+          stop: (...args: unknown[]) => void
+        } = {
+          type: 'sine',
+          frequency: { value: 0 },
+          connect: () => ({ connect: () => {} }),
+          start: () => {},
+          stop: (...args: unknown[]) => {
+            osc.stopArgs.push(args)
+          },
+          stopArgs: [],
+        }
+        oscs.push(osc)
+        return osc
+      },
+      createGain: () => ({
+        gain: {
+          setValueAtTime: () => {},
+          linearRampToValueAtTime: () => {},
+          exponentialRampToValueAtTime: () => {},
+        },
+        connect: () => {},
+      }),
+    } as unknown as AudioContext
+
+    const notes = chordFor([
+      { id: 1, lab: [50, 40, 0] },
+      { id: 2, lab: [50, 0, 40] },
+      { id: 3, lab: [50, -40, 0] },
+    ])
+    const stop = playArpeggio(notes, audio)
+    expect(oscs).toHaveLength(0)
+
+    // The first note (t=0) has started; the second (t=240ms) has not.
+    vi.advanceTimersByTime((ARPEGGIO_STEP * 1000) / 2)
+    expect(oscs).toHaveLength(1)
+
+    stop()
+    // playNote schedules one timed stop; the arpeggio stop adds an immediate one.
+    expect(oscs[0].stopArgs).toContainEqual([])
+
+    // The remaining notes never start.
+    vi.advanceTimersByTime(ARPEGGIO_STEP * 1000 * notes.length)
+    expect(oscs).toHaveLength(1)
   })
 })

@@ -332,7 +332,7 @@ main { display: grid; gap: var(--s4); }
   .chord-slot { flex-basis: 40px; }
   .sugg { grid-template-columns: 44px 1fr; }
   .sugg-sw { width: 44px; height: 44px; }
-  .sugg-actions { grid-column: 2; }
+  .sugg-actions { grid-column: 2; justify-content: flex-end; }
   .picker .btn-quiet { padding: 0 var(--s1); font-size: 14px; }
 }
 
