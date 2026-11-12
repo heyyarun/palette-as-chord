@@ -14,10 +14,13 @@ const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel)!
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <header class="top">
-  <div class="theme-switch" role="radiogroup" aria-label="Theme" id="theme-switch">
-    <button type="button" role="radio" data-theme-pref="paper">Paper</button>
-    <button type="button" role="radio" data-theme-pref="night">Night</button>
-    <button type="button" role="radio" data-theme-pref="auto">Auto</button>
+  <div class="top-bar">
+    <a class="made-with" href="https://offrun.dev" target="_blank" rel="noopener">Made with <span>offrun.dev</span></a>
+    <div class="theme-switch" role="radiogroup" aria-label="Theme" id="theme-switch">
+      <button type="button" role="radio" data-theme-pref="paper">Paper</button>
+      <button type="button" role="radio" data-theme-pref="night">Night</button>
+      <button type="button" role="radio" data-theme-pref="auto">Auto</button>
+    </div>
   </div>
   <h1 class="brand">Palette as Chord</h1>
   <p class="provenance">After Sanzo Wada's <span lang="ja">配色総鑑</span> (1933–35)</p>
