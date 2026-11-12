@@ -10,7 +10,7 @@
 // scrolls into view.
 
 import * as THREE from 'three'
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js'
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js'
 import { WHITE_COUNT, keyboardLayout, onKeyboard, type KeyLayout } from './keyboard.ts'
 
 export type PianoTheme = 'paper' | 'night'
@@ -37,7 +37,7 @@ export interface Piano {
 const KB_W = WHITE_COUNT // 21
 const CHEEK = 1.3
 const W = KB_W + CHEEK * 2 // case width
-const L = 30 // case length, bass side
+const L = 33 // case length, bass side
 const RIM_H = 5.5
 const CASE_Y = 11 // underside of the case
 const KEY_Y = CASE_Y + 2.6 // top of the white keys
@@ -143,12 +143,101 @@ const particleFrag = /* glsl */ `
 
 const LOOKS: Record<
   PianoTheme,
-  { body: number; inner: number; board: number; string: number; floor: number; key: number; env: number; rim: number; blend: THREE.Blending }
+  { body: number; inner: number; board: number; floor: number; key: number; env: number; rim: number; blend: THREE.Blending }
 > = {
-  // Paper: a warm rosewood grand on the paper plate.
-  paper: { body: 0x4a2617, inner: 0x6e3a22, board: 0xc89a62, string: 0x9c8460, floor: 0.22, key: 0.72, env: 0.55, rim: 0.9, blend: THREE.NormalBlending },
+  // Paper: a deep rosewood grand on the paper plate.
+  paper: { body: 0x341a0d, inner: 0x4a2412, board: 0xcf9c5e, floor: 0.3, key: 0.72, env: 0.85, rim: 0.9, blend: THREE.NormalBlending },
   // Night: black lacquer under a stage light; the glow adds light.
-  night: { body: 0x0d0b0a, inner: 0x2a1a12, board: 0x8a6438, string: 0x8d7a5c, floor: 0.5, key: 0.7, env: 0.9, rim: 1.6, blend: THREE.AdditiveBlending },
+  night: { body: 0x0a0908, inner: 0x241610, board: 0x7d5a30, floor: 0.5, key: 0.7, env: 1.1, rim: 1.6, blend: THREE.AdditiveBlending },
+}
+
+/** A dark showroom with softbox strips, so the lacquer picks up long,
+ *  elegant highlights instead of a flat grey wash. */
+function showroomTexture(renderer: THREE.WebGLRenderer): THREE.Texture {
+  const scene = new THREE.Scene()
+  scene.background = new THREE.Color(0x060607)
+  const strip = (w: number, h: number, color: number, gain: number, x: number, y: number, z: number) => {
+    const m = new THREE.Mesh(
+      new THREE.PlaneGeometry(w, h),
+      new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(gain), side: THREE.DoubleSide }),
+    )
+    m.position.set(x, y, z)
+    m.lookAt(0, 0, 0)
+    scene.add(m)
+  }
+  strip(44, 44, 0xfff1dd, 4, 0, 26, 0) // warm ceiling wash
+  strip(6, 34, 0xffffff, 9, -24, 12, 6) // tall left softbox
+  strip(6, 34, 0xdfe8ff, 7, 24, 12, 6) // tall right softbox
+  strip(34, 6, 0xffd9a8, 3, 0, 8, -26) // low warm back strip
+  const pmrem = new THREE.PMREMGenerator(renderer)
+  const tex = pmrem.fromScene(scene, 0.04).texture
+  pmrem.dispose()
+  return tex
+}
+
+/** Faint lengthwise grain for the soundboard; the board colour tints it. */
+function grainTexture(): THREE.CanvasTexture {
+  const c = document.createElement('canvas')
+  c.width = 256
+  c.height = 256
+  const g = c.getContext('2d')!
+  g.fillStyle = '#ffffff'
+  g.fillRect(0, 0, 256, 256)
+  for (let x = 0; x < 256; x += 3) {
+    const wob = Math.sin(x * 0.11) * 6 + Math.sin(x * 0.031) * 10
+    g.strokeStyle = `rgba(70, 40, 15, ${0.03 + ((x * 7) % 5) * 0.012})`
+    g.lineWidth = 1
+    g.beginPath()
+    g.moveTo(x + wob, 0)
+    g.bezierCurveTo(x + wob + 4, 85, x + wob - 4, 170, x + wob, 256)
+    g.stroke()
+  }
+  const tex = new THREE.CanvasTexture(c)
+  tex.colorSpace = THREE.SRGBColorSpace
+  tex.wrapS = THREE.RepeatWrapping
+  tex.wrapT = THREE.RepeatWrapping
+  tex.repeat.set(0.12, 0.12)
+  tex.anisotropy = 4
+  return tex
+}
+
+/** A soft dark pool that grounds the piano on the page. */
+function poolTexture(): THREE.CanvasTexture {
+  const c = document.createElement('canvas')
+  c.width = 256
+  c.height = 256
+  const g = c.getContext('2d')!
+  const grad = g.createRadialGradient(128, 128, 10, 128, 128, 126)
+  grad.addColorStop(0, 'rgba(15, 8, 4, 0.34)')
+  grad.addColorStop(0.6, 'rgba(15, 8, 4, 0.16)')
+  grad.addColorStop(1, 'rgba(15, 8, 4, 0)')
+  g.fillStyle = grad
+  g.fillRect(0, 0, 256, 256)
+  const tex = new THREE.CanvasTexture(c)
+  tex.colorSpace = THREE.SRGBColorSpace
+  return tex
+}
+
+/** Gold maker's decal for the fallboard, Steinway-style. */
+function decalTexture(): THREE.CanvasTexture {
+  const c = document.createElement('canvas')
+  c.width = 512
+  c.height = 128
+  const g = c.getContext('2d')!
+  const gold = g.createLinearGradient(0, 20, 0, 108)
+  gold.addColorStop(0, '#8a6a2f')
+  gold.addColorStop(0.45, '#f3d894')
+  gold.addColorStop(0.55, '#f7e2a8')
+  gold.addColorStop(1, '#8a6a2f')
+  g.fillStyle = gold
+  g.font = '600 62px Georgia, "Times New Roman", serif'
+  g.textAlign = 'center'
+  g.textBaseline = 'middle'
+  g.fillText('W A D A', 256, 66)
+  const tex = new THREE.CanvasTexture(c)
+  tex.colorSpace = THREE.SRGBColorSpace
+  tex.anisotropy = 4
+  return tex
 }
 
 export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
@@ -158,15 +247,14 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   renderer.outputColorSpace = THREE.SRGBColorSpace
   renderer.toneMapping = THREE.ACESFilmicToneMapping
-  renderer.toneMappingExposure = 1.05
+  renderer.toneMappingExposure = 1.12
   renderer.shadowMap.enabled = true
   renderer.shadowMap.type = THREE.PCFSoftShadowMap
   renderer.domElement.className = 'piano-canvas'
   container.appendChild(renderer.domElement)
 
   const scene = new THREE.Scene()
-  const pmrem = new THREE.PMREMGenerator(renderer)
-  const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture
+  const envTex = showroomTexture(renderer)
   scene.environment = envTex
 
   // The piano holds still, seen from the player's treble side, so the eye stays
@@ -176,12 +264,12 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
 
   // ---------- Lights ----------
 
-  const hemi = new THREE.HemisphereLight(0xfff4e0, 0x3a2c20, 0.6)
+  const hemi = new THREE.HemisphereLight(0xfff4e0, 0x3a2c20, 0.55)
   scene.add(hemi)
-  const key = new THREE.DirectionalLight(0xfff1dc, 2.2)
+  const key = new THREE.DirectionalLight(0xfff1dc, 2.6)
   key.position.set(26, 60, 30)
   key.castShadow = true
-  key.shadow.mapSize.set(1024, 1024)
+  key.shadow.mapSize.set(2048, 2048)
   Object.assign(key.shadow.camera, { left: -40, right: 40, top: 40, bottom: -40, near: 10, far: 160 })
   key.shadow.radius = 6
   key.shadow.camera.updateProjectionMatrix()
@@ -189,13 +277,24 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
   const rim = new THREE.DirectionalLight(0xb9c4ff, 0.9)
   rim.position.set(-40, 30, -40)
   scene.add(rim)
+  // Warm bounce off the floor so the lid underside and front faces stay woody.
+  const bounce = new THREE.DirectionalLight(0xffe0b8, 0.55)
+  bounce.position.set(6, -20, 40)
+  scene.add(bounce)
 
   // ---------- Materials ----------
 
-  const lacquer = new THREE.MeshPhysicalMaterial({ roughness: 0.28, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.08 })
-  const innerMat = new THREE.MeshStandardMaterial({ roughness: 0.6 })
-  const boardMat = new THREE.MeshStandardMaterial({ roughness: 0.75 })
-  const brass = new THREE.MeshStandardMaterial({ color: 0xb08a4a, metalness: 0.85, roughness: 0.35 })
+  const lacquer = new THREE.MeshPhysicalMaterial({
+    roughness: 0.16,
+    metalness: 0,
+    clearcoat: 1,
+    clearcoatRoughness: 0.06,
+    envMapIntensity: 1.15,
+  })
+  const innerMat = new THREE.MeshStandardMaterial({ roughness: 0.55 })
+  const boardMat = new THREE.MeshStandardMaterial({ roughness: 0.7, map: grainTexture() })
+  const brass = new THREE.MeshStandardMaterial({ color: 0xc09a52, metalness: 0.9, roughness: 0.3, envMapIntensity: 1.2 })
+  const steel = new THREE.MeshStandardMaterial({ color: 0xb9bec6, metalness: 0.9, roughness: 0.35 })
   const feltMat = new THREE.MeshStandardMaterial({ color: 0x7a1f1f, roughness: 1 })
 
   const piano = new THREE.Group()
@@ -217,27 +316,62 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
   const board = new THREE.Mesh(slab(outline(0.7), 0.2), boardMat)
   board.position.y = CASE_Y + 1.6
   piano.add(board)
-  const plateShape = outline(1.6)
-  plateShape.holes.push(...[0.3, 0.55, 0.78].map((f) => {
-    const hole = new THREE.Path()
-    const cx = -W / 2 + 3 + f * (W - 8)
-    const cz = back(cx) * 0.55
-    hole.absarc(cx, cz, 1.6 + (1 - f) * 1.4, 0, Math.PI * 2, false)
-    return hole
-  }))
-  const plate = new THREE.Mesh(slab(plateShape, 0.35), brass)
-  plate.position.y = CASE_Y + 1.85
-  piano.add(plate)
+  // The iron frame is open, like a real casting: a brass rim around the
+  // inner case, a solid head under the tuning pins, and three struts
+  // fanning from the head to the tail rim. The soundboard shows through
+  // the openings between the struts.
+  const plateY = CASE_Y + 1.85
+  const plateRim = new THREE.Mesh(slab(wall(1.3, 2.5), 0.35), brass)
+  plateRim.position.y = plateY
+  piano.add(plateRim)
+  // Shape y maps to world z = -y (see slab), so y 0.9..8 spans z -0.9..-8,
+  // overlapping the struts' front ends at z = -3.5.
+  const head = new THREE.Shape()
+  head.moveTo(-W / 2 + 1.3, 0.9)
+  head.lineTo(W / 2 - 1.3, 0.9)
+  head.lineTo(W / 2 - 1.3, 8)
+  head.lineTo(-W / 2 + 1.3, 8)
+  head.lineTo(-W / 2 + 1.3, 0.9)
+  const plateHead = new THREE.Mesh(slab(head, 0.35), brass)
+  plateHead.position.y = plateY
+  piano.add(plateHead)
+  for (const sx of [-6.5, 0, 6.5]) {
+    // From under the head (z = -3.5) to mid-way across the back rim band.
+    const len = back(sx) - 2.0 - 3.5
+    const strut = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.35, len), brass)
+    strut.position.set(sx, CASE_Y + 2.35, -3.5 - len / 2)
+    strut.rotation.y = -sx * 0.003
+    strut.castShadow = true
+    piano.add(strut)
+  }
+  // Pinblock with two staggered rows of steel tuning pins.
+  const pinblock = new THREE.Mesh(new THREE.BoxGeometry(KB_W * 0.8, 0.28, 2.4), innerMat)
+  pinblock.position.set(0, CASE_Y + 2.3, -4.4)
+  piano.add(pinblock)
+  {
+    const pinGeo = new THREE.CylinderGeometry(0.09, 0.09, 0.55, 8)
+    const pins = new THREE.InstancedMesh(pinGeo, steel, 30)
+    const m4 = new THREE.Matrix4()
+    for (let i = 0; i < 30; i++) {
+      const row = Math.floor(i / 15)
+      const x = -7.8 + (i % 15) * 1.11 + row * 0.55
+      m4.makeTranslation(x, CASE_Y + 2.6, -3.9 - row * 1)
+      pins.setMatrixAt(i, m4)
+    }
+    pins.instanceMatrix.needsUpdate = true
+    piano.add(pins)
+  }
 
   // Inner rim lining.
   const lining = new THREE.Mesh(slab(wall(0.7, 0.9), RIM_H - 0.6), innerMat)
   lining.position.y = CASE_Y + 0.3
   piano.add(lining)
 
-  // Lid: same outline, hinged along the straight bass side and propped open.
+  // Lid: a touch larger than the rim so it overhangs, hinged along the
+  // straight bass side and propped open.
   const lidPivot = new THREE.Group()
   lidPivot.position.set(-W / 2, CASE_Y + RIM_H + 0.05, 0)
-  const lid = new THREE.Mesh(slab(outline(0), 0.35, 0.05), lacquer)
+  const lid = new THREE.Mesh(slab(outline(-0.3), 0.5, 0.08), lacquer)
   lid.position.x = W / 2
   lid.castShadow = true
   lidPivot.add(lid)
@@ -247,50 +381,92 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
   const propD = W - 3
   const propX = -W / 2 + propD * Math.cos(LID_OPEN)
   const propLen = propD * Math.sin(LID_OPEN)
-  const prop = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, propLen, 8), lacquer)
+  const prop = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, propLen, 10), lacquer)
   prop.position.set(propX, CASE_Y + RIM_H + propLen / 2, -back(propX) * 0.5)
   piano.add(prop)
 
   // Keybed, cheek blocks, fallboard and the music desk.
-  const keybed = new THREE.Mesh(new THREE.BoxGeometry(W, 1.2, WHITE_LEN + 0.6), lacquer)
+  const keybed = new THREE.Mesh(new RoundedBoxGeometry(W, 1.2, WHITE_LEN + 0.6, 2, 0.15), lacquer)
   keybed.position.set(0, KEY_Y - 1.55, KEY_FRONT - WHITE_LEN / 2 - 0.1)
   keybed.castShadow = true
   piano.add(keybed)
   for (const side of [-1, 1]) {
-    const cheek = new THREE.Mesh(new THREE.BoxGeometry(CHEEK, 1.8, WHITE_LEN + 0.6), lacquer)
+    const cheek = new THREE.Mesh(new RoundedBoxGeometry(CHEEK, 1.8, WHITE_LEN + 0.6, 2, 0.18), lacquer)
     cheek.position.set(side * (KB_W / 2 + CHEEK / 2), KEY_Y - 0.2, KEY_FRONT - WHITE_LEN / 2 - 0.1)
     cheek.castShadow = true
     piano.add(cheek)
   }
-  const fall = new THREE.Mesh(new THREE.BoxGeometry(KB_W, 1.8, 0.9), lacquer)
+  const fall = new THREE.Mesh(new RoundedBoxGeometry(KB_W, 1.8, 0.9, 2, 0.15), lacquer)
   fall.position.set(0, KEY_Y + 0.5, -0.9)
   piano.add(fall)
+  const decal = new THREE.Mesh(
+    new THREE.PlaneGeometry(6.4, 1.6),
+    new THREE.MeshBasicMaterial({ map: decalTexture(), transparent: true, toneMapped: false }),
+  )
+  decal.position.set(0, KEY_Y + 0.5, -0.43)
+  piano.add(decal)
   // The red felt strip where the keys meet the fallboard.
   const felt = new THREE.Mesh(new THREE.BoxGeometry(KB_W, 0.3, 0.12), feltMat)
   felt.position.set(0, KEY_Y + 0.1, -0.42)
   piano.add(felt)
-  const desk = new THREE.Mesh(new THREE.BoxGeometry(KB_W * 0.7, 4.2, 0.25), lacquer)
-  desk.position.set(0, KEY_Y + 3.2, -2.4)
-  desk.rotation.x = -0.32
-  desk.castShadow = true
-  piano.add(desk)
+  // An open music desk: frame and slats, so the strings show through.
+  {
+    const desk = new THREE.Group()
+    const dw = KB_W * 0.55
+    const dh = 4.4
+    const rail = (w: number, h: number, x: number, y: number) => {
+      const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.28), lacquer)
+      m.position.set(x, y, 0)
+      m.castShadow = true
+      desk.add(m)
+    }
+    rail(0.3, dh, -dw / 2, 0)
+    rail(0.3, dh, dw / 2, 0)
+    rail(dw, 0.35, 0, dh / 2 - 0.17)
+    rail(dw, 0.35, 0, -dh / 2 + 0.17)
+    for (const fx of [-0.3, -0.1, 0.1, 0.3]) rail(0.22, dh - 0.9, fx * dw, 0)
+    const ledge = new THREE.Mesh(new THREE.BoxGeometry(dw, 0.25, 0.9), lacquer)
+    ledge.position.set(0, -dh / 2 + 0.1, 0.35)
+    desk.add(ledge)
+    desk.position.set(0, KEY_Y + 3.1, -2.4)
+    desk.rotation.x = -0.32
+    piano.add(desk)
+  }
 
-  // Legs and the pedal lyre.
-  const legGeo = new THREE.CylinderGeometry(0.75, 0.55, CASE_Y, 16)
+  // Turned legs with brass caster cups, and the pedal lyre.
+  const legProfile: Array<[number, number]> = [
+    [0.55, 0.5],
+    [0.5, 0.9],
+    [0.42, 1.4],
+    [0.4, 2.2],
+    [0.58, 2.9],
+    [0.62, 3.3],
+    [0.5, 3.8],
+    [0.44, 4.6],
+    [0.44, 8.5],
+    [0.55, 9.2],
+    [0.58, 9.6],
+    [0.5, 10.2],
+    [0.52, CASE_Y],
+  ]
+  const legGeo = new THREE.LatheGeometry(legProfile.map(([r, y]) => new THREE.Vector2(r, y)), 20)
   for (const [x, z] of [
     [-W / 2 + 1.4, -1.2],
     [W / 2 - 1.4, -1.2],
     [-W / 2 + 3.5, -back(-W / 2 + 3.5) + 3],
   ]) {
     const leg = new THREE.Mesh(legGeo, lacquer)
-    leg.position.set(x, CASE_Y / 2, z)
+    leg.position.set(x, 0, z)
     leg.castShadow = true
     piano.add(leg)
-    const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 0.4, 16), brass)
-    cap.position.set(x, 0.2, z)
-    piano.add(cap)
+    const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.62, 0.5, 0.5, 16), brass)
+    cup.position.set(x, 0.25, z)
+    piano.add(cup)
+    const wheel = new THREE.Mesh(new THREE.SphereGeometry(0.18, 12, 10), brass)
+    wheel.position.set(x, 0.1, z + 0.15)
+    piano.add(wheel)
   }
-  const lyre = new THREE.Mesh(new THREE.BoxGeometry(2.6, CASE_Y - 1.5, 0.5), lacquer)
+  const lyre = new THREE.Mesh(new RoundedBoxGeometry(2.6, CASE_Y - 1.5, 0.5, 2, 0.12), lacquer)
   lyre.position.set(0, (CASE_Y - 1.5) / 2 + 1.5, -6)
   lyre.castShadow = true
   piano.add(lyre)
@@ -300,12 +476,19 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
     piano.add(pedal)
   }
 
-  // Floor shadow only; the page shows through everywhere else.
+  // Floor shadow plus a soft dark pool; the page shows through everywhere else.
   const floorMat = new THREE.ShadowMaterial({ opacity: 0.25 })
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(260, 260), floorMat)
   floor.rotation.x = -Math.PI / 2
   floor.receiveShadow = true
   scene.add(floor)
+  const pool = new THREE.Mesh(
+    new THREE.PlaneGeometry(64, 48),
+    new THREE.MeshBasicMaterial({ map: poolTexture(), transparent: true, depthWrite: false }),
+  )
+  pool.rotation.x = -Math.PI / 2
+  pool.position.set(0, 0.02, -10)
+  scene.add(pool)
 
   // ---------- Keys ----------
 
@@ -327,8 +510,8 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
   for (const k of layout) {
     const mat = new THREE.MeshPhysicalMaterial(
       k.black
-        ? { color: 0x141210, roughness: 0.35, clearcoat: 0.6 }
-        : { color: 0xf6f0e2, roughness: 0.45, clearcoat: 0.3 },
+        ? { color: 0x0e0d0c, roughness: 0.22, clearcoat: 1, clearcoatRoughness: 0.1 }
+        : { color: 0xf6f0e2, roughness: 0.32, clearcoat: 0.5, clearcoatRoughness: 0.25 },
     )
     const mesh = new THREE.Mesh(k.black ? blackGeo : whiteGeo, mat)
     // Keys pivot at their back end, like real ones.
@@ -358,6 +541,7 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
     t: number
     freq: number
     color: THREE.Color
+    base: THREE.Color
   }
   const strings = new Map<number, StringState>()
   const stringY = CASE_Y + 2.6
@@ -372,10 +556,12 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
     }
     const geo = new THREE.BufferGeometry()
     geo.setAttribute('position', new THREE.BufferAttribute(pos, 3))
-    const mat = new THREE.LineBasicMaterial({ color: 0x9c8460, transparent: true, opacity: 0.85 })
+    // Wound copper basses under steel trebles, like a real frame.
+    const base = new THREE.Color(k.midi < 56 ? 0xb26a35 : 0xd4d7dc)
+    const mat = new THREE.LineBasicMaterial({ color: base.clone(), transparent: true, opacity: 0.95 })
     const line = new THREE.Line(geo, mat)
     piano.add(line)
-    strings.set(k.midi, { line, mat, pos, z0, z1, amp: 0, t: 0, freq: 9 + (k.index % 12) * 0.8, color: new THREE.Color() })
+    strings.set(k.midi, { line, mat, pos, z0, z1, amp: 0, t: 0, freq: 9 + (k.index % 12) * 0.8, color: new THREE.Color(), base })
   }
 
   // ---------- Particles ----------
@@ -428,24 +614,29 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
   const labels = new Map<number, THREE.Sprite>()
   function makeLabel(text: string, color: string): THREE.Sprite {
     const c = document.createElement('canvas')
-    c.width = 128
+    c.width = 160
     c.height = 64
     const g = c.getContext('2d')!
-    g.fillStyle = '#fbedd2'
-    g.fillRect(4, 4, 120, 56)
-    g.strokeStyle = '#957356'
-    g.lineWidth = 3
-    g.strokeRect(4, 4, 120, 56)
+    g.fillStyle = 'rgba(20, 14, 10, 0.85)'
+    if (g.roundRect) {
+      g.beginPath()
+      g.roundRect(2, 6, 156, 52, 26)
+      g.fill()
+    } else {
+      g.fillRect(2, 6, 156, 52)
+    }
     g.fillStyle = color
-    g.fillRect(10, 10, 20, 44)
-    g.fillStyle = '#2a221b'
-    g.font = 'bold 30px ui-monospace, Menlo, monospace'
+    g.beginPath()
+    g.arc(30, 32, 11, 0, Math.PI * 2)
+    g.fill()
+    g.fillStyle = '#f5ead6'
+    g.font = 'bold 27px ui-monospace, Menlo, monospace'
     g.textBaseline = 'middle'
-    g.fillText(text, 38, 34)
+    g.fillText(text, 50, 34)
     const tex = new THREE.CanvasTexture(c)
     tex.colorSpace = THREE.SRGBColorSpace
     const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: false, toneMapped: false }))
-    sprite.scale.set(3.2, 1.6, 1)
+    sprite.scale.set(2.7, 1.08, 1)
     sprite.renderOrder = 10
     return sprite
   }
@@ -464,7 +655,7 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
     hemi.intensity = t === 'night' ? 0.35 : 0.7
     pMat.blending = look.blend
     pMat.needsUpdate = true
-    for (const s of strings.values()) if (s.amp < 0.01) s.mat.color.setHex(look.string)
+    for (const s of strings.values()) if (s.amp < 0.01) s.mat.color.copy(s.base)
   }
   applyLook(theme)
 
@@ -597,7 +788,7 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
   const timers = new Set<number>()
   const tmp = new THREE.Color()
   const white = new THREE.Color(0xf6f0e2)
-  const ebony = new THREE.Color(0x141210)
+  const ebony = new THREE.Color(0x0e0d0c)
 
   function frame() {
     if (!canRun()) {
@@ -634,9 +825,9 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
         s.pos[i * 3] = s.line.userData.x0 + env * s.amp * Math.cos(s.t * s.freq * 4.1) * 0.12
       }
       s.line.geometry.attributes.position.needsUpdate = true
-      tmp.setHex(look.string).lerp(s.color, Math.min(1, s.amp * 1.4))
+      tmp.copy(s.base).lerp(s.color, Math.min(1, s.amp * 1.4))
       s.mat.color.copy(tmp)
-      if (s.amp < 0.002) s.mat.color.setHex(look.string)
+      if (s.amp < 0.002) s.mat.color.copy(s.base)
     }
 
     let anyAlive = false
@@ -724,12 +915,14 @@ export function mountPiano(container: HTMLElement, theme: PianoTheme): Piano {
       el.removeEventListener('pointerup', onUp)
       el.removeEventListener('pointermove', onMove)
       envTex.dispose()
-      pmrem.dispose()
       scene.traverse((o) => {
         const m = o as THREE.Mesh
         m.geometry?.dispose()
         const mats = Array.isArray(m.material) ? m.material : m.material ? [m.material] : []
-        mats.forEach((mt) => mt.dispose())
+        mats.forEach((mt) => {
+          ;(mt as unknown as { map?: THREE.Texture | null }).map?.dispose()
+          mt.dispose()
+        })
       })
       renderer.dispose()
       el.remove()
